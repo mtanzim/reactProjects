@@ -1,59 +1,78 @@
 
-/*
-class SubApp extends React.Component {
+class Board extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			notes: ['Hello Mom',
+							'Hello Dad'
+						]
+		};
 	}
   render() {
     // change code below this line
-    return (
-	    <div>
-	    	<h1>{this.props.text}</h1>
-	    </div>
-    );
-    // change code above this line
+		return (
+			<div className='board'>
+				<Note/>
+			</div>
+		);
   }
-};
-
-*/
-class App extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-  render() {
-    // change code below this line
-    return (
-	    <div>
-	    	<Note/>
-	    </div>
-    );
-    // change code above this line
-  }
-};
+}
 
 
 class Note extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			editing: false
+		};
+		this.edit = this.edit.bind(this);
+		this.remove = this.remove.bind(this);
+		this.renderDisplay = this.renderDisplay.bind(this);
+		this.renderForm = this.renderForm.bind(this);
+		this.save = this.save.bind(this);
+
 	}
 
 	edit () {
-		alert("Editing Note");
+		this.setState ({
+			editing:true,
+			textContent:''
+		});
 	}
 	remove() {
 		alert("Removing Note");
 	}
-  render() {
-    // change code below this line
+	save () {
+		//var val = this.refs.newText.value;
+		//alert(val);
+		this.setState ({
+			editing:false,
+			textContent:this.refs.newText.value
+		});
+	}
+	renderForm () {
+		return(
+			<div className='note'>
+				<textarea ref='newText'></textarea>
+				<button onClick={this.save}>SAVE</button>
+			</div>
+		);
+
+	}
+	renderDisplay () {
     return (
 	    <div className="note">
-	    	<p/>
+	    	<p>{this.state.textContent}</p>
 	    	<span>
 	    		<button onClick={this.edit}>EDIT</button>
 	    		<button onClick={this.remove}>X</button>
     		</span>
 	    </div>
     );
+	}
+  render() {
+    // change code below this line
+	return (this.state.editing) ? this.renderForm() : this.renderDisplay();
     // change code above this line
   }
 };
@@ -61,4 +80,4 @@ class Note extends React.Component {
 
 
 
-ReactDOM.render(<App/>, document.getElementById('react-container'));
+ReactDOM.render(<Board/>, document.getElementById('react-container'));
