@@ -15,38 +15,69 @@ class Board extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			note: [
-	      {id: 0, note: 'Call Bob'},
-	      {id: 1, note: 'Email Sarah'},
-	      {id: 2, note: 'Eat Lunch'},
-	      {id: 3, note: 'Finish proposal'}
-      ]
+			note: [],
+			numNotes:0
 		};
+
+		this.update = this.update.bind(this);
+		this.remove = this.remove.bind(this);
+		this.eachNote = this.eachNote.bind(this);
+		this.add = this.add.bind(this);
 	}
-	update (newText, id	) {
+
+	add () {
+		var notesUpdated = this.state.note.concat([{note:'', id:this.state.note.length}]);
+		//var notesUpdated = this.state.note;
+		console.log(this.state.note);
+		this.setState({
+			note:notesUpdated,
+			numNotes: this.state.numNotes +=1
+		});
+	}
+
+	update (newText,id) {
+		console.log(newText+ ' for '+id);
 		var notesUpdated = this.state.note.map(
 			note => (note.id !== id) ?
 				note :
-				{...note,note:newText} 
+				{...note,
+					note:newText} 
 			)
-		this.setState({notesUpdated});
+		this.setState({
+			note:notesUpdated
+		});
+		//console.log(notesUpdated);
+		console.log(this.state.note);
 	}
 	remove (id) {
 		var notesUpdated = this.state.note.filter((note) => (note.id !== id));
-		this.setState({notesUpdated});
+		this.setState({
+			note:notesUpdated,
+			numNotes: this.state.numNotes -=1
+		});
+	}
+
+	eachNote(note){
+
+		//console.log(note.id);
+		//console.log(note.note);
+		return (<Note id={note.id}
+						note={note.note}
+						onChange={this.update}
+						onRemove={this.remove}>
+						{note.note}
+						</Note>);
 	}
 
   render() {
     // change code below this line
 		return (
 			<div className='board'>
-				{this.state.note.map( (notes) => {
-					return <Note key={notes.id}
-											 note={notes.note}
-											 onChange={this.update}
-											 onRemove={this.remove}
-								  ></Note>
-				})}
+				<p>{this.state.numNotes}</p>
+				<button onClick={this.add}>Add</button>
+				{this.state.note.map(this.eachNote)}
+				
+				
 			</div>
 		);
   }
@@ -56,9 +87,6 @@ class Board extends React.Component {
 class Note extends React.Component {
 	constructor(props) {
 		super(props);
-
-
-
 		this.state = {
 			editing: false,
 			textContent:this.props.note
@@ -78,7 +106,7 @@ class Note extends React.Component {
 		});
 	}
 	remove() {
-		alert("Removing Note");
+		//alert("Removing Note");
 		this.props.onRemove(this.props.id);
 	}
 	save () {
@@ -94,7 +122,7 @@ class Note extends React.Component {
 	renderForm () {
 		return(
 			<div className='note'>
-				<textarea ref='newText'></textarea>
+				<textarea ref='newText'>{this.props.note}</textarea>
 				<button onClick={this.save}>SAVE</button>
 			</div>
 		);
@@ -103,7 +131,8 @@ class Note extends React.Component {
 	renderDisplay () {
     return (
 	    <div className="note">
-	    	<p>{this.state.textContent}</p>
+	    	{/*<p>{this.props.id}</p>*/}
+	    	<p>{this.props.note}</p>
 	    	<span>
 	    		<button onClick={this.edit}>EDIT</button>
 	    		<button onClick={this.remove}>X</button>
@@ -121,4 +150,4 @@ class Note extends React.Component {
 
 
 
-ReactDOM.render(<Board numNotes={100}/>, document.getElementById('react-container'));
+ReactDOM.render(<Board/>, document.getElementById('react-container'));
