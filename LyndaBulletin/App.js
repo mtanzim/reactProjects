@@ -23,17 +23,26 @@ class Board extends React.Component {
 		this.remove = this.remove.bind(this);
 		this.eachNote = this.eachNote.bind(this);
 		this.add = this.add.bind(this);
+		this.clearAll = this.clearAll.bind(this);
 	}
 
-	add () {
-		var notesUpdated = this.state.note.concat([{note:'', id:this.state.note.length}]);
-		//var notesUpdated = this.state.note;
-		console.log(this.state.note);
+
+	clearAll() {
 		this.setState({
-			note:notesUpdated,
-			numNotes: this.state.numNotes +=1
+			note:[],
+			numNotes: 0
 		});
 	}
+	add () {
+		//use time as the id as a hack for now
+		var notesUpdated = this.state.note.concat([{note:'New Note', id:(new Date).getTime()}]);
+		console.log(this.state.note);
+		
+		this.setState({
+			note:notesUpdated,
+			numNotes: this.state.numNotes +=1,
+		});
+	} 
 
 	update (newText,id) {
 		console.log(newText+ ' for '+id);
@@ -61,7 +70,9 @@ class Board extends React.Component {
 
 		//console.log(note.id);
 		//console.log(note.note);
-		return (<Note id={note.id}
+		return (<Note 
+						key={note.id}
+						id={note.id}
 						note={note.note}
 						onChange={this.update}
 						onRemove={this.remove}>
@@ -75,9 +86,8 @@ class Board extends React.Component {
 			<div className='board'>
 				<p>{this.state.numNotes}</p>
 				<button onClick={this.add}>Add</button>
+				<button onClick={this.clearAll}>Clear</button>
 				{this.state.note.map(this.eachNote)}
-				
-				
 			</div>
 		);
   }
