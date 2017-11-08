@@ -22,9 +22,9 @@ div.board {
 div.note {
   height: 150px;
   width: 150px;
-  background-color: yellow;
+  /*background-color: yellow;*/
   margin: 2px 0;
-  position: relative;
+  position: absolute;
   cursor: -webkit-grab;
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
   overflow: hidden;
@@ -62,9 +62,16 @@ div.note > textarea {
   background: rgba(255, 255, 255, .5);
 }
 
-.board > button {
-  position: relative;
+#addBtn {
+  position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
+  font-size: 1.5em;
+}
+
+#clearBtn {
+  position: absolute;
+  top: 60px;
+  right: 20px;
   font-size: 1.5em;
 }
