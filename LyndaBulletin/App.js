@@ -16,6 +16,7 @@ class Board extends React.Component {
 		this.eachNote = this.eachNote.bind(this);
 		this.add = this.add.bind(this);
 		this.clearAll = this.clearAll.bind(this);
+		this.changeColor = this.changeColor.bind(this);
 	}
 	componentWillMount () {
 		//alert('Board loading');
@@ -34,7 +35,8 @@ class Board extends React.Component {
 	}
 	add () {
 		//use time as the id as a hack for now
-		var notesUpdated = this.state.note.concat([{id:(new Date).getTime()}]);
+		//this will also serve as the default color picker
+		var notesUpdated = this.state.note.concat([{id:(new Date).getTime(),color:'yellow'}]);
 		console.log(this.state.note);
 		
 		this.setState({
@@ -42,7 +44,19 @@ class Board extends React.Component {
 			numNotes: this.state.numNotes +=1,
 		});
 	} 
-
+	changeColor (color, id) {
+		console.log('changing to color: ' + color)
+		var notesUpdated = this.state.note.map(
+			note => (note.id !== id) ?
+				note :
+				{...note,
+					color:color} 
+			)
+		this.setState({
+			note:notesUpdated
+		});
+		console.log(this.state.note);
+	}
 	update (newText,id) {
 		console.log(newText+ ' for '+id);
 		var notesUpdated = this.state.note.map(
@@ -73,10 +87,10 @@ class Board extends React.Component {
 						key={note.id}
 						id={note.id}
 						note={note.note}
-						noteStyle={{backgroundColor:'yellow'}}
 						onChange={this.update}
 						onRemove={this.remove}
-						onClick={this.changeColor}
+						color={note.color}
+						onColorChange={this.changeColor}
 						>
 						{/*note.note*/}
 						</Note>);
@@ -87,8 +101,8 @@ class Board extends React.Component {
 		return (
 			<div className='board'>
 				{/*	<p>{this.state.numNotes}</p>*/}
-				<button id='addBtn' onClick={this.add}>+</button>
-				<button id='clearBtn' onClick={this.clearAll}>Clear</button>
+				<button  className="btn btn-defautt"id='addBtn' onClick={this.add}>+</button>
+				<button className="btn btn-default" id='clearBtn' onClick={this.clearAll}>Clear</button>
 				{this.state.note.map(this.eachNote)}
 			</div>
 		);
@@ -104,14 +118,13 @@ class Note extends React.Component {
 		this.state = {
 			editing: false,
 			textContent:this.props.note,
-			styleState: this.props.noteStyle
+			styleState: {backgroundColor:this.props.color}
 		};
 		this.edit = this.edit.bind(this);
 		this.remove = this.remove.bind(this);
 		this.renderDisplay = this.renderDisplay.bind(this);
 		this.renderForm = this.renderForm.bind(this);
 		this.save = this.save.bind(this);
-		this.changeColor = this.changeColor.bind(this);
 		this.randomBetween = this.randomBetween.bind(this);
 
 	}
@@ -127,7 +140,7 @@ class Note extends React.Component {
 	componentWillMount () {
 			this.setState({
 				styleState:{
-					backgroundColor:'yellow',
+					backgroundColor:this.props.color,
 					left: this.randomBetween().x+'px',
           bottom: this.randomBetween().y+'px' 
 				}
@@ -135,7 +148,10 @@ class Note extends React.Component {
 	}
 	
 	componentWillUpdate () {
-		//console.log ('changing colors');
+		if (this.state.editing===false){
+
+		}
+
 	}
 	componentDidUpdate() {
 		if (this.state.editing){
@@ -171,21 +187,11 @@ class Note extends React.Component {
 		
 		
 	}
-	changeColor () {
-
-		this.state.styleState.backgroundColor === 'purple' ? 
-			this.setState({
-				styleState:{backgroundColor:'blue'}
-			}) :
-			this.setState({
-				styleState:{backgroundColor:'purple'}
-			}) 
-	}
 	renderForm () {
 		return(
 			<div className='note' style={this.state.styleState} >
 				<textarea ref='newText'>{this.props.note}</textarea>
-				<button onClick={this.save}>SAVE</button>
+				<button className='btn btn-success' onClick={this.save}>SAVE</button>
 			</div>
 		);
 
@@ -196,8 +202,11 @@ class Note extends React.Component {
 	    	{/*<p>{this.props.id}</p>*/}
 	    	<p>{this.props.note}</p>
 	    	<span>
-	    		<button onClick={this.edit}>EDIT</button>
-	    		<button onClick={this.remove}>X</button>
+	    		<button id="red" className="btn lblBtn">R</button>
+	    		<button id="yellow" className="btn lblBtn">G</button>
+	    		<button id="green" className="btn lblBtn">B</button>
+	    		<button className="btn btn-success" onClick={this.edit}>EDIT</button>
+	    		<button className="btn btn-danger" onClick={this.remove}>X</button>
     		</span>
 	    </div>
     );

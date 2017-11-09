@@ -20,13 +20,12 @@ div.board {
 }
 
 div.note {
-  height: 150px;
-  width: 150px;
-  /*background-color: yellow;*/
+  height: 250px;
+  width: 250px;
   margin: 2px 0;
   position: absolute;
   cursor: -webkit-grab;
-  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
+  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2); 
   overflow: hidden;
 }
 
@@ -38,7 +37,7 @@ div.note p {
   margin: 0;
   font-size: 22px;
   padding: 5px;
-  font-family: "Shadows Into Light", Arial;
+  font-family: "Shadows Into Light", Arial;  
 }
 
 div.note:hover > span {
@@ -54,12 +53,22 @@ div.note > span {
 }
 
 div.note button {
-  margin: 2px;
+  margin: 4px;
 }
 
 div.note > textarea {
   height: 75%;
+  width: 100%;
+  font-size: 22px;
   background: rgba(255, 255, 255, .5);
+  font-family: "Shadows Into Light", Arial;
+}
+
+#clearBtn {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  font-size: 1.5em;
 }
 
 #addBtn {
@@ -69,9 +78,15 @@ div.note > textarea {
   font-size: 1.5em;
 }
 
-#clearBtn {
+#saveBtn {
   position: absolute;
-  top: 60px;
+  top: 80px;
   right: 20px;
   font-size: 1.5em;
+}
+
+.lblBtn {
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
 }
