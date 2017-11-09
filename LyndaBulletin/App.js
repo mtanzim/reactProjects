@@ -118,7 +118,6 @@ class Note extends React.Component {
 		this.state = {
 			editing: false,
 			textContent:this.props.note,
-			styleState: {backgroundColor:this.props.color}
 		};
 		this.edit = this.edit.bind(this);
 		this.remove = this.remove.bind(this);
@@ -126,6 +125,9 @@ class Note extends React.Component {
 		this.renderForm = this.renderForm.bind(this);
 		this.save = this.save.bind(this);
 		this.randomBetween = this.randomBetween.bind(this);
+		this.changeRed = this.changeRed.bind(this);
+		this.changeGreen = this.changeGreen.bind(this);
+		this.changeYellow = this.changeYellow.bind(this);
 
 	}
 	randomBetween() {
@@ -140,32 +142,20 @@ class Note extends React.Component {
 	componentWillMount () {
 			this.setState({
 				styleState:{
-					backgroundColor:this.props.color,
 					left: this.randomBetween().x+'px',
-          bottom: this.randomBetween().y+'px' 
-				}
+          bottom: this.randomBetween().y+'px',
+          backgroundColor: this.props.color 
+				},
+				
 			})
 	}
 	
-	componentWillUpdate () {
-		if (this.state.editing===false){
-
-		}
-
-	}
 	componentDidUpdate() {
 		if (this.state.editing){
 			this.refs.newText.focus();
 			this.refs.newText.select();
 		}
 	}
-	/*
-	shouldComponentUpdate (nextProps, nextState) {
-		if (this.state.editing){
-			return this.props.note !== nextProps.note || this.state.textContent !== nextState.textContent;
-		} else { return true;}
-	}
-	*/
 
 	edit () {
 		this.setState ({
@@ -182,11 +172,27 @@ class Note extends React.Component {
 		//alert(val);
 		this.props.onChange(this.refs.newText.value, this.props.id);
 		this.setState ({
-			editing:false
+			editing:false 
 		});
 		
 		
 	}
+	changeRed () {
+		this.setState ({
+			styleState: {...this.state.styleState, backgroundColor:'red'}
+		});
+	}
+	changeYellow () {
+		this.setState ({
+			styleState: {...this.state.styleState, backgroundColor:'yellow'}
+		});
+	}
+	changeGreen () {
+		this.setState ({
+			styleState: {...this.state.styleState, backgroundColor:'green'}
+		});
+	}
+
 	renderForm () {
 		return(
 			<div className='note' style={this.state.styleState} >
@@ -202,13 +208,13 @@ class Note extends React.Component {
 	    	{/*<p>{this.props.id}</p>*/}
 	    	<p>{this.props.note}</p>
 	    	<span>
-	    		<button id="red" className="btn lblBtn">R</button>
-	    		<button id="yellow" className="btn lblBtn">G</button>
-	    		<button id="green" className="btn lblBtn">B</button>
+	    		<button id="red" className="btn lblBtn" onClick={this.changeRed}></button>
+	    		<button id="yellow" className="btn lblBtn" onClick={this.changeYellow}></button>
+	    		<button id="green" className="btn lblBtn" onClick={this.changeGreen}></button>
 	    		<button className="btn btn-success" onClick={this.edit}>EDIT</button>
 	    		<button className="btn btn-danger" onClick={this.remove}>X</button>
     		</span>
-	    </div>
+	    </div>	
     );
 	}
   render() {
