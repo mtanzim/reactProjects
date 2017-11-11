@@ -8,6 +8,12 @@ div#react-container {
   overflow: hidden;
 }
 
+.noteContainer {
+  margin:15%;
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -19,8 +25,8 @@ div.board {
 }
 
 div.note {
-  height: 250px;
-  width: 250px;
+  min-height: 300px;
+  width: 300px;
   margin: 2px 0;
   position: absolute;
   cursor: -webkit-grab;
@@ -51,18 +57,22 @@ div.note > span {
   transition: opacity .25s linear;
 }
 
+
 div.note button {
   margin: 4px;
 }
 
-div.note > textarea {
-  height: 75%;
+
+.textInput {
+  height: 100%;
   width: 100%;
   font-size: 22px;
   background: rgba(255, 255, 255, .5);
   font-family: "Shadows Into Light", Arial;
 }
 
+
+/*
 #clearBtn {
   position: absolute;
   top: 80px;
@@ -76,13 +86,7 @@ div.note > textarea {
   right: 20px;
   font-size: 1.5em;
 }
-
-#saveBtn {
-  position: absolute;
-  top: 80px;
-  right: 20px;
-  font-size: 1.5em;
-}
+*/
 
 .lblBtn {
   border-radius: 100%;
@@ -98,7 +102,7 @@ div.note > textarea {
 #green {
   background-color: green;
 }
-
+  
 #yellow {
   background-color: yellow;
 }

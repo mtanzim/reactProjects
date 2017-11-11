@@ -3,6 +3,28 @@ mtanzim@gmail.com
 Nov 2017
 */
 
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render () {
+		return (
+			<div>
+				<div>
+					<nav class="navbar fixed-top navbar-light bg-light">
+					<a class="navbar-brand" href="#">Fixed top</a>
+					</nav>
+				</div>
+				<Board/>
+			</div>
+
+		)
+	}
+
+}
+
+
 class Board extends React.Component {
 	constructor(props) {
 		super(props);
@@ -99,11 +121,19 @@ class Board extends React.Component {
   render() {
     // change code below this line
 		return (
-			<div className='board'>
-				{/*	<p>{this.state.numNotes}</p>*/}
-				<button  className="btn btn-defautt"id='addBtn' onClick={this.add}>+</button>
-				<button className="btn btn-default" id='clearBtn' onClick={this.clearAll}>Clear</button>
-				{this.state.note.map(this.eachNote)}
+			<div className=''>
+				<div>
+					<nav className="navbar fixed-top navbar-light bg-light">
+						<a className="navbar-brand" >Bulletin Board</a>
+							<div class="ml-auto">
+								<button  className="btn btn-default mr-2"id='addBtn' onClick={this.add}><i class="fa fa-plus" aria-hidden="true"></i></button>
+								<button className="btn btn-default" id='clearBtn' onClick={this.clearAll}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+							</div>
+					</nav>
+				</div>
+				<div className="noteContainer">
+					{this.state.note.map(this.eachNote)}
+				</div>
 			</div>
 		);
   }
@@ -117,7 +147,7 @@ class Note extends React.Component {
 		super(props);
 		this.state = {
 			editing: false,
-			textContent:this.props.note,
+			textContent:this.props.note
 		};
 		this.edit = this.edit.bind(this);
 		this.remove = this.remove.bind(this);
@@ -133,6 +163,7 @@ class Note extends React.Component {
 	randomBetween() {
 		var bodyWidth = document.body.clientWidth;
   	var bodyHeight = document.body.clientHeight;
+  	console.log('body height is ' +bodyHeight);
   	var randPosX = Math.floor((Math.random()*bodyWidth));
   	var randPosY = Math.floor((Math.random()*bodyHeight));
   	console.log({'x':randPosX,'y':randPosY});
@@ -143,7 +174,7 @@ class Note extends React.Component {
 			this.setState({
 				styleState:{
 					left: this.randomBetween().x+'px',
-          bottom: this.randomBetween().y+'px',
+          top: this.randomBetween().y+'px',
           backgroundColor: this.props.color 
 				},
 				
@@ -195,26 +226,40 @@ class Note extends React.Component {
 
 	renderForm () {
 		return(
-			<div className='note' style={this.state.styleState} >
-				<textarea ref='newText'>{this.props.note}</textarea>
-				<button className='btn btn-success' onClick={this.save}>SAVE</button>
-			</div>
+		    <div className='card note' style={this.state.styleState}>
+		    	<div className='card-body'>
+		    		<textarea className='textInput' ref='newText'>{this.props.note}</textarea>
+	    		</div>
+		    	<div class="card-footer bg-transparent fixed-bottom">
+		    		<div className="row">
+			    		<div className="ml-auto">
+								<button className='btn btn-success' onClick={this.save}><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+			    		</div>
+		    		</div>
+	    		</div>
+    		</div>
 		);
 
 	}
 	renderDisplay () {
     return (
-	    <div className='note' style={this.state.styleState}>
-	    	{/*<p>{this.props.id}</p>*/}
-	    	<p>{this.props.note}</p>
-	    	<span>
-	    		<button id="red" className="btn lblBtn" onClick={this.changeRed}></button>
-	    		<button id="yellow" className="btn lblBtn" onClick={this.changeYellow}></button>
-	    		<button id="green" className="btn lblBtn" onClick={this.changeGreen}></button>
-	    		<button className="btn btn-success" onClick={this.edit}>EDIT</button>
-	    		<button className="btn btn-danger" onClick={this.remove}>X</button>
-    		</span>
-	    </div>	
+		    <div className='card note' style={this.state.styleState}>
+		    	<div className='card-body'>
+			    	<p>{this.props.note}</p>
+		    	</div>
+		    	<div class="card-footer bg-transparent fixed-bottom">
+		    		<div className="row">
+			    		<button id="red" className="btn lblBtn" onClick={this.changeRed}></button>
+			    		<button id="yellow" className="btn lblBtn"  onClick={this.changeYellow}></button>
+			    		<button id="green" className="btn lblBtn" onClick={this.changeGreen}></button>
+			    		<div className="ml-auto">
+				    		<button className="btn btn-success" onClick={this.edit}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+				    		<button className="btn btn-danger" onClick={this.remove}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+			    		</div>
+		    		</div>
+	    		</div>
+		    </div>
+
     );
 	}
   render() {
@@ -227,4 +272,4 @@ Note.defaultProps = {
 }
 
 
-ReactDOM.render(<Board/>, document.getElementById('react-container'));
+ReactDOM.render(<App/>, document.getElementById('react-container'));
