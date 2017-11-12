@@ -30,8 +30,11 @@ class Board extends React.Component {
 		super(props);
 		this.state = {
 			note: [],
-			numNotes:0
+			numNotes:0,
+			addDisabled:false
 		};
+
+		this.NUM_LIMIT=25;
 
 		this.update = this.update.bind(this);
 		this.remove = this.remove.bind(this);
@@ -44,27 +47,49 @@ class Board extends React.Component {
 		//alert('Board loading');
 	}
 	componentDidMount () {
-		//alert('Board loaded');
+		$(".alert").alert();
 	}
+
+	
+	componentWillUpdate () {
+		
+	}
+	
 
 	
 
 	clearAll() {
 		this.setState({
 			note:[],
-			numNotes: 0
+			numNotes: 0,
+			addDisabled:false
 		});
 	}
+
+
 	add () {
 		//use time as the id as a hack for now
 		//this will also serve as the default color picker
-		var notesUpdated = this.state.note.concat([{id:(new Date).getTime(),color:'yellow'}]);
-		console.log(this.state.note);
-		
-		this.setState({
-			note:notesUpdated,
-			numNotes: this.state.numNotes +=1,
-		});
+
+		console.log('number of notes: ' + this.state.numNotes);
+
+		if (this.state.numNotes < this.NUM_LIMIT) {
+			var notesUpdated = this.state.note.concat([{id:(new Date).getTime()}]);
+			console.log(this.state.note);
+			
+			this.setState({
+				note:notesUpdated,
+				numNotes: this.state.numNotes +=1,
+				addDisabled: this.state.numNotes >= this.NUM_LIMIT
+
+			});
+		}
+			//alert('too many notes!');
+			//this.setState({
+				//addDisabled:true
+			//});
+			//alert('More than ' + this.NUM_LIMIT + ' notes are not allowed!');
+		//
 	} 
 	changeColor (color, id) {
 		console.log('changing to color: ' + color)
@@ -97,8 +122,10 @@ class Board extends React.Component {
 		var notesUpdated = this.state.note.filter((note) => (note.id !== id));
 		this.setState({
 			note:notesUpdated,
-			numNotes: this.state.numNotes -=1
+			numNotes: this.state.numNotes -=1,
+			addDisabled: this.state.numNotes > this.NUM_LIMIT
 		});
+		console.log ('state is: '+ this.state.addDisabled)
 	}
 
 	eachNote(note){
@@ -111,7 +138,7 @@ class Board extends React.Component {
 						note={note.note}
 						onChange={this.update}
 						onRemove={this.remove}
-						color={note.color}
+						//color={note.color}
 						onColorChange={this.changeColor}
 						>
 						{/*note.note*/}
@@ -122,14 +149,19 @@ class Board extends React.Component {
     // change code below this line
 		return (
 			<div className=''>
-				<div>
+				<div className=''>
 					<nav className="navbar fixed-top navbar-light bg-light">
 						<a className="navbar-brand" >Bulletin Board</a>
 							<div class="ml-auto">
-								<button  className="btn btn-default mr-2"id='addBtn' onClick={this.add}><i class="fa fa-plus" aria-hidden="true"></i></button>
+								<button  className="btn btn-default mr-2" id='addBtn' disabled={this.state.addDisabled} onClick={this.add}><i class="fa fa-plus" aria-hidden="true"></i></button>
 								<button className="btn btn-default" id='clearBtn' onClick={this.clearAll}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 							</div>
 					</nav>
+				</div>
+				<div className="fixed-bottom" hidden={!this.state.addDisabled}>
+					<div class="alert alert-danger" >
+						More than {this.NUM_LIMIT} notes are not allowed!
+					</div>
 				</div>
 				<div className="noteContainer">
 					{this.state.note.map(this.eachNote)}
@@ -149,6 +181,10 @@ class Note extends React.Component {
 			editing: false,
 			textContent:this.props.note
 		};
+
+		this.NoteHeight=300;
+		this.NoteWidth=300;
+
 		this.edit = this.edit.bind(this);
 		this.remove = this.remove.bind(this);
 		this.renderDisplay = this.renderDisplay.bind(this);
@@ -161,22 +197,25 @@ class Note extends React.Component {
 
 	}
 	randomBetween() {
-		var bodyWidth = document.body.clientWidth;
-  	var bodyHeight = document.body.clientHeight;
+		var bodyWidth = document.body.clientWidth-this.NoteWidth;
+  	var bodyHeight = document.body.clientHeight-this.NoteHeight;
   	console.log('body height is ' +bodyHeight);
   	var randPosX = Math.floor((Math.random()*bodyWidth));
   	var randPosY = Math.floor((Math.random()*bodyHeight));
   	console.log({'x':randPosX,'y':randPosY});
-  	return {'x':randPosX,'y':randPosY};
+  	return {'x':randPosX,'y':randPosY};	
 	}
 	
 	componentWillMount () {
+
 			this.setState({
 				styleState:{
 					left: this.randomBetween().x+'px',
           top: this.randomBetween().y+'px',
-          backgroundColor: this.props.color 
-				},
+          backgroundColor: '#FFEE58',
+          minHeight: this.NoteHeight+'px',
+          width: this.NoteWidth+'px' 
+				}
 				
 			})
 	}
@@ -210,17 +249,17 @@ class Note extends React.Component {
 	}
 	changeRed () {
 		this.setState ({
-			styleState: {...this.state.styleState, backgroundColor:'red'}
+			styleState: {...this.state.styleState, backgroundColor:'#FF8A80'}
 		});
 	}
 	changeYellow () {
 		this.setState ({
-			styleState: {...this.state.styleState, backgroundColor:'yellow'}
+			styleState: {...this.state.styleState, backgroundColor:'#FFEE58'}
 		});
 	}
 	changeGreen () {
 		this.setState ({
-			styleState: {...this.state.styleState, backgroundColor:'green'}
+			styleState: {...this.state.styleState, backgroundColor:'#00E676'}
 		});
 	}
 
@@ -247,17 +286,19 @@ class Note extends React.Component {
 		    	<div className='card-body'>
 			    	<p>{this.props.note}</p>
 		    	</div>
-		    	<div class="card-footer bg-transparent fixed-bottom">
-		    		<div className="row">
-			    		<button id="red" className="btn lblBtn" onClick={this.changeRed}></button>
-			    		<button id="yellow" className="btn lblBtn"  onClick={this.changeYellow}></button>
-			    		<button id="green" className="btn lblBtn" onClick={this.changeGreen}></button>
-			    		<div className="ml-auto">
-				    		<button className="btn btn-success" onClick={this.edit}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-				    		<button className="btn btn-danger" onClick={this.remove}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+		    	<span>
+			    	<div class="card-footer fixed-bottom">
+			    		<div id="noteCtrl" className="row">
+				    		<button id="red" className="btn lblBtn" onClick={this.changeRed}></button>
+				    		<button id="yellow" className="btn lblBtn"  onClick={this.changeYellow}></button>
+				    		<button id="green" className="btn lblBtn" onClick={this.changeGreen}></button>
+				    		<div className="ml-auto">
+					    		<button className="btn btn-success " onClick={this.edit}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+					    		<button className="btn btn-danger " onClick={this.remove}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+				    		</div>
 			    		</div>
 		    		</div>
-	    		</div>
+	    		</span>
 		    </div>
 
     );

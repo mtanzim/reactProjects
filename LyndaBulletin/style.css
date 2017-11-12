@@ -5,6 +5,7 @@ html,
 div.board,
 div#react-container {
   height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -12,6 +13,7 @@ div#react-container {
   margin:15%;
   height: 100%;
   width: 100%;
+
 }
 
 body {
@@ -25,8 +27,10 @@ div.board {
 }
 
 div.note {
+  /*
   min-height: 300px;
   width: 300px;
+  */
   margin: 2px 0;
   position: absolute;
   cursor: -webkit-grab;
@@ -49,13 +53,13 @@ div.note:hover > span {
   opacity: 1;
 }
 
-div.note > span {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
+div .note > span {
+  /*background-color: white !important;*/
   opacity: 0;
   transition: opacity .25s linear;
 }
+
+
 
 
 div.note button {
@@ -90,19 +94,23 @@ div.note button {
 
 .lblBtn {
   border-radius: 100%;
-  border: solid white 4px;
+  border: solid gray 1  px;
   width: 35px;
   height: 35px;
 }
 
-#red {
-  background-color: red;
+.btn {
+  cursor: pointer;
 }
 
-#green {
-  background-color: green;
+#red {
+  background-color: #FF8A80;
+}
+
+#yellow {
+  background-color: #FFEE58;
 }
   
-#yellow {
-  background-color: yellow;
+#green {
+  background-color: #00E676;
 }
