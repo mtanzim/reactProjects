@@ -184,6 +184,7 @@ class Note extends React.Component {
 
 		this.NoteHeight=300;
 		this.NoteWidth=300;
+		this.formHeight=this.NoteHeight*0.6;
 
 		this.edit = this.edit.bind(this);
 		this.remove = this.remove.bind(this);
@@ -267,10 +268,10 @@ class Note extends React.Component {
 		return(
 		    <div className='card note' style={this.state.styleState}>
 		    	<div className='card-body'>
-		    		<textarea className='textInput' ref='newText'>{this.props.note}</textarea>
+		    		<textarea style={{'height':this.formHeight+'px'}} ref='newText'>{this.props.note}</textarea>
 	    		</div>
-		    	<div class="card-footer bg-transparent fixed-bottom">
-		    		<div className="row">
+		    	<div class="card-footer bg-transparent">
+	    			<div className="row">
 			    		<div className="ml-auto">
 								<button className='btn btn-success' onClick={this.save}><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
 			    		</div>
@@ -287,7 +288,7 @@ class Note extends React.Component {
 			    	<p>{this.props.note}</p>
 		    	</div>
 		    	<span>
-			    	<div class="card-footer fixed-bottom">
+			    	<div class="card-footer ">
 			    		<div id="noteCtrl" className="row">
 				    		<button id="red" className="btn lblBtn" onClick={this.changeRed}></button>
 				    		<button id="yellow" className="btn lblBtn"  onClick={this.changeYellow}></button>

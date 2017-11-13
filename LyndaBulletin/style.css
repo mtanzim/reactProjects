@@ -27,10 +27,6 @@ div.board {
 }
 
 div.note {
-  /*
-  min-height: 300px;
-  width: 300px;
-  */
   margin: 2px 0;
   position: absolute;
   cursor: -webkit-grab;
@@ -59,42 +55,30 @@ div .note > span {
   transition: opacity .25s linear;
 }
 
+div .card-body > textarea {
+  width: 100%;
+  resize: none;
+  background-color: rgba(0,0,0,0);
+  overflow: auto;
+  outline: none;
+  border: none;
 
-
-
+  margin: 0;
+  font-size: 22px;
+  padding: 5px;
+  
+  font-family: "Shadows Into Light", Arial;  
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
 div.note button {
   margin: 4px;
 }
 
-
-.textInput {
-  height: 100%;
-  width: 100%;
-  font-size: 22px;
-  background: rgba(255, 255, 255, .5);
-  font-family: "Shadows Into Light", Arial;
-}
-
-
-/*
-#clearBtn {
-  position: absolute;
-  top: 80px;
-  right: 20px;
-  font-size: 1.5em;
-}
-
-#addBtn {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 1.5em;
-}
-*/
-
 .lblBtn {
   border-radius: 100%;
-  border: solid gray 1  px;
+  border: solid gray 1px;
   width: 35px;
   height: 35px;
 }
