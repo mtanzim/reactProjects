@@ -10,7 +10,7 @@ div#react-container {
 }
 
 .noteContainer {
-  margin:15%;
+  padding:15%;
   height: 100%;
   width: 100%;
 
@@ -26,6 +26,10 @@ div.board {
   background: white;
 }
 
+.card-body {
+  overflow-y: auto;
+}
+
 div.note {
   margin: 2px 0;
   position: absolute;
@@ -36,23 +40,14 @@ div.note {
 
 div.note:active {
   cursor: -webkit-grabbing;
+  /*z-index: 1;*/
 }
 
 div.note p {
   margin: 0;
   font-size: 22px;
   padding: 5px;
-  font-family: "Shadows Into Light", Arial;  
-}
-
-div.note:hover > span {
-  opacity: 1;
-}
-
-div .note > span {
-  /*background-color: white !important;*/
-  opacity: 0;
-  transition: opacity .25s linear;
+  /*font-family: "Shadows Into Light", Arial; */ 
 }
 
 div .card-body > textarea {
@@ -65,13 +60,22 @@ div .card-body > textarea {
 
   margin: 0;
   font-size: 22px;
-  padding: 5px;
-  
-  font-family: "Shadows Into Light", Arial;  
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box;         /* Opera/IE 8+ */
+  padding: 5px;s
+  /*font-family: "Shadows Into Light", Arial; */ 
+
 }
+
+div.note:hover > span {
+  opacity: 1;
+}
+
+div .note > span {
+  /*background-color: white !important;*/
+  opacity: 0;
+  transition: opacity .25s linear;
+}
+
+
 div.note button {
   margin: 4px;
 }

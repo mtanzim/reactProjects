@@ -11,11 +11,6 @@ class App extends React.Component {
 	render () {
 		return (
 			<div>
-				<div>
-					<nav class="navbar fixed-top navbar-light bg-light">
-					<a class="navbar-brand" href="#">Fixed top</a>
-					</nav>
-				</div>
 				<Board/>
 			</div>
 
@@ -29,9 +24,12 @@ class Board extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			note: [],
-			numNotes:0,
-			addDisabled:false
+			note: [{id:(new Date).getTime(), 
+							note:'Welcome to the Bulletin Board! Hover on the note to access the controls.'
+						}],
+			numNotes:1,
+			addDisabled:false,
+			maxZ:0
 		};
 
 		this.NUM_LIMIT=25;
@@ -62,11 +60,16 @@ class Board extends React.Component {
 		this.setState({
 			note:[],
 			numNotes: 0,
-			addDisabled:false
+			addDisabled:false,
+			maxZ:0
 		});
 	}
 
-
+	changeZ () {
+		this.setState ({
+			maxZ: this.state.maxZ +1
+		});
+	}
 	add () {
 		//use time as the id as a hack for now
 		//this will also serve as the default color picker
@@ -132,7 +135,7 @@ class Board extends React.Component {
 
 		//console.log(note.id);
 		//console.log(note.note);
-		return (<Note 
+		return (<Note
 						key={note.id}
 						id={note.id}
 						note={note.note}
@@ -148,14 +151,14 @@ class Board extends React.Component {
   render() {
     // change code below this line
 		return (
-			<div className=''>
-				<div className=''>
-					<nav className="navbar fixed-top navbar-light bg-light">
-						<a className="navbar-brand" >Bulletin Board</a>
-							<div class="ml-auto">
-								<button  className="btn btn-default mr-2" id='addBtn' disabled={this.state.addDisabled} onClick={this.add}><i class="fa fa-plus" aria-hidden="true"></i></button>
-								<button className="btn btn-default" id='clearBtn' onClick={this.clearAll}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-							</div>
+			<div>
+				<div>
+					<nav className="navbar navbar-light bg-light">
+						<a className="navbar-brand" href="#">Bulletin Board</a>
+							<span class="ml-auto">
+									<button  className="btn btn-default mr-2" id='addBtn' disabled={this.state.addDisabled} onClick={this.add}><i class="fa fa-plus" aria-hidden="true"></i></button>
+									<button className="btn btn-default" id='clearBtn' onClick={this.clearAll}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+							</span>
 					</nav>
 				</div>
 				<div className="fixed-bottom" hidden={!this.state.addDisabled}>
@@ -200,9 +203,12 @@ class Note extends React.Component {
 	randomBetween() {
 		var bodyWidth = document.body.clientWidth-this.NoteWidth;
   	var bodyHeight = document.body.clientHeight-this.NoteHeight;
+  	var xOffset=0.10*bodyWidth;
+  	var yOffset=0.10*bodyHeight;
+
   	console.log('body height is ' +bodyHeight);
-  	var randPosX = Math.floor((Math.random()*bodyWidth));
-  	var randPosY = Math.floor((Math.random()*bodyHeight));
+  	var randPosX = xOffset+ Math.floor((Math.random()*bodyWidth));
+  	var randPosY = yOffset+ Math.floor((Math.random()*bodyHeight));
   	console.log({'x':randPosX,'y':randPosY});
   	return {'x':randPosX,'y':randPosY};	
 	}
@@ -214,12 +220,20 @@ class Note extends React.Component {
 					left: this.randomBetween().x+'px',
           top: this.randomBetween().y+'px',
           backgroundColor: '#FFEE58',
-          minHeight: this.NoteHeight+'px',
+          height: this.NoteHeight+'px',
           width: this.NoteWidth+'px' 
 				}
 				
 			})
 	}
+
+	/*
+	componentWillUpdate () {
+		this.setState ({
+			styleState: {...this.state.styleState, zIndex:this.props.maxZ}
+		});
+	}
+	*/
 	
 	componentDidUpdate() {
 		if (this.state.editing){
