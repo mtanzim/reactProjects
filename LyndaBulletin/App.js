@@ -151,11 +151,11 @@ class Board extends React.Component {
   render() {
     // change code below this line
 		return (
-			<div>
-				<div>
+			<div className="">
+				<div className="">
 					<nav className="navbar navbar-light bg-light">
 						<a className="navbar-brand" href="#">Bulletin Board</a>
-							<span class="ml-auto">
+							<span className="ml-auto">
 									<button  className="btn btn-default mr-2" id='addBtn' disabled={this.state.addDisabled} onClick={this.add}><i class="fa fa-plus" aria-hidden="true"></i></button>
 									<button className="btn btn-default" id='clearBtn' onClick={this.clearAll}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 							</span>
@@ -166,8 +166,10 @@ class Board extends React.Component {
 						More than {this.NUM_LIMIT} notes are not allowed!
 					</div>
 				</div>
-				<div className="noteContainer">
-					{this.state.note.map(this.eachNote)}
+				<div className="noteContainer container">
+					<div className="row">
+						{this.state.note.map(this.eachNote)}
+					</div>
 				</div>
 			</div>
 		);
@@ -199,6 +201,8 @@ class Note extends React.Component {
 		this.changeGreen = this.changeGreen.bind(this);
 		this.changeYellow = this.changeYellow.bind(this);
 
+		//this.renderBreak = this.renderBreak.bind(this);
+
 	}
 	randomBetween() {
 		var bodyWidth = document.body.clientWidth-this.NoteWidth;
@@ -217,8 +221,8 @@ class Note extends React.Component {
 
 			this.setState({
 				styleState:{
-					left: this.randomBetween().x+'px',
-          top: this.randomBetween().y+'px',
+					//left: this.randomBetween().x+'px',
+          //top: this.randomBetween().y+'px',
           backgroundColor: '#FFEE58',
           height: this.NoteHeight+'px',
           width: this.NoteWidth+'px' 
@@ -278,8 +282,15 @@ class Note extends React.Component {
 		});
 	}
 
+	/*
+	renderBreak () {
+		this.state.numNotes % 3 === 0 ? return (<div className="w-100"></div>) : null
+	}
+	*/
+
 	renderForm () {
 		return(
+			<div className='col-sm-4'>
 		    <div className='card note' style={this.state.styleState}>
 		    	<div className='card-body'>
 		    		<textarea style={{'height':this.formHeight+'px'}} ref='newText'>{this.props.note}</textarea>
@@ -292,34 +303,40 @@ class Note extends React.Component {
 		    		</div>
 	    		</div>
     		</div>
+  		</div>
 		);
 
 	}
 	renderDisplay () {
     return (
-		    <div className='card note' style={this.state.styleState}>
-		    	<div className='card-body'>
-			    	<p>{this.props.note}</p>
-		    	</div>
-		    	<span>
-			    	<div class="card-footer ">
-			    		<div id="noteCtrl" className="row">
-				    		<button id="red" className="btn lblBtn" onClick={this.changeRed}></button>
-				    		<button id="yellow" className="btn lblBtn"  onClick={this.changeYellow}></button>
-				    		<button id="green" className="btn lblBtn" onClick={this.changeGreen}></button>
-				    		<div className="ml-auto">
-					    		<button className="btn btn-success " onClick={this.edit}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-					    		<button className="btn btn-danger " onClick={this.remove}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+  			
+	    		<div className='col-sm-4'>
+				    <div className='card note' style={this.state.styleState}>
+				    	<div className='card-body'>
+					    	<p>{this.props.note}</p>
+				    	</div>
+				    	<span>
+					    	<div className="card-footer ">
+					    		<div id="noteCtrl" className="row">
+						    		<button id="red" className="btn lblBtn" onClick={this.changeRed}></button>
+						    		<button id="yellow" className="btn lblBtn"  onClick={this.changeYellow}></button>
+						    		<button id="green" className="btn lblBtn" onClick={this.changeGreen}></button>
+						    		<div className="ml-auto">
+							    		<button className="btn btn-success " onClick={this.edit}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+							    		<button className="btn btn-danger " onClick={this.remove}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+						    		</div>
+					    		</div>
 				    		</div>
-			    		</div>
-		    		</div>
-	    		</span>
-		    </div>
+			    		</span>
+				    </div>
+			    </div>
 
+		    
     );
 	}
   render() {
-		return (<ReactDraggable>{((this.state.editing) ? this.renderForm() : this.renderDisplay())}</ReactDraggable>);
+		//	return (<ReactDraggable>{((this.state.editing) ? this.renderForm() : this.renderDisplay())}</ReactDraggable>);
+		return (((this.state.editing) ? this.renderForm() : this.renderDisplay()));
   }
 };
 

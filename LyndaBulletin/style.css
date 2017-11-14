@@ -1,20 +1,25 @@
 @import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
 
+/*
 body,
 html,
 div.board,
 div#react-container {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 
+*/
 .noteContainer {
-  padding:15%;
+  margin-top:2%;
+  margin-bottom:2%;
+  /*
   height: 100%;
   width: 100%;
-
+  */
 }
+
 
 body {
   margin: 0;
@@ -30,9 +35,14 @@ div.board {
   overflow-y: auto;
 }
 
+.row-m-t {
+  margin-top: 10px;
+}
+
+
 div.note {
-  margin: 2px 0;
-  position: absolute;
+  /*margin: 0;*/
+  /*position: absolute;*/
   cursor: -webkit-grab;
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2); 
   overflow: hidden;
