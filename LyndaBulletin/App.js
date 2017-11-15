@@ -166,7 +166,7 @@ class Board extends React.Component {
 						More than {this.NUM_LIMIT} notes are not allowed!
 					</div>
 				</div>
-				<div className="noteContainer container-fluid">
+				<div className="noteContainer container">
 					<div className="row ">
 						{this.state.note.map(this.eachNote)}
 					</div>
