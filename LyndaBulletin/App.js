@@ -152,7 +152,7 @@ class Board extends React.Component {
     // change code below this line
 		return (
 			<div className="">
-				<div className="">
+				<div className="sticky-top">
 					<nav className="navbar navbar-light bg-light">
 						<a className="navbar-brand" href="#">Bulletin Board</a>
 							<span className="ml-auto">
@@ -166,8 +166,8 @@ class Board extends React.Component {
 						More than {this.NUM_LIMIT} notes are not allowed!
 					</div>
 				</div>
-				<div className="noteContainer container">
-					<div className="row">
+				<div className="noteContainer container-fluid">
+					<div className="row ">
 						{this.state.note.map(this.eachNote)}
 					</div>
 				</div>
@@ -225,7 +225,7 @@ class Note extends React.Component {
           //top: this.randomBetween().y+'px',
           backgroundColor: '#FFEE58',
           height: this.NoteHeight+'px',
-          width: this.NoteWidth+'px' 
+          //minWidth: this.NoteWidth+'px' 
 				}
 				
 			})
@@ -290,7 +290,7 @@ class Note extends React.Component {
 
 	renderForm () {
 		return(
-			<div className='col-sm-4'>
+			<div className='col-sm-6 col-md-4 col-lg-3'>
 		    <div className='card note' style={this.state.styleState}>
 		    	<div className='card-body'>
 		    		<textarea style={{'height':this.formHeight+'px'}} ref='newText'>{this.props.note}</textarea>
@@ -310,7 +310,7 @@ class Note extends React.Component {
 	renderDisplay () {
     return (
   			
-	    		<div className='col-sm-4'>
+	    		<div className='col-sm-6 col-md-4 col-lg-3'>
 				    <div className='card note' style={this.state.styleState}>
 				    	<div className='card-body'>
 					    	<p>{this.props.note}</p>

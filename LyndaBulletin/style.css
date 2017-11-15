@@ -13,13 +13,11 @@ div#react-container {
 */
 .noteContainer {
   margin-top:2%;
-  margin-bottom:2%;
   /*
   height: 100%;
   width: 100%;
   */
 }
-
 
 body {
   margin: 0;
@@ -27,7 +25,7 @@ body {
 }
 
 div.board {
-  width: 100%;
+  /*width: 100%;*/
   background: white;
 }
 
@@ -35,27 +33,25 @@ div.board {
   overflow-y: auto;
 }
 
-.row-m-t {
-  margin-top: 10px;
-}
-
 
 div.note {
-  /*margin: 0;*/
+  margin-bottom: 15px;
   /*position: absolute;*/
   cursor: -webkit-grab;
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2); 
   overflow: hidden;
 }
 
+/*
 div.note:active {
   cursor: -webkit-grabbing;
-  /*z-index: 1;*/
+  z-index: 1;
 }
+*/
 
 div.note p {
   margin: 0;
-  font-size: 22px;
+  font-size: 16px;
   padding: 5px;
   /*font-family: "Shadows Into Light", Arial; */ 
 }
@@ -69,7 +65,7 @@ div .card-body > textarea {
   border: none;
 
   margin: 0;
-  font-size: 22px;
+  font-size: 16px;
   padding: 5px;s
   /*font-family: "Shadows Into Light", Arial; */ 
 
