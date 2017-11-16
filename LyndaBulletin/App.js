@@ -25,7 +25,7 @@ class Board extends React.Component {
 		super(props);
 		this.state = {
 			note: [{id:(new Date).getTime(), 
-							note:'Welcome to the Bulletin Board! Hover on the note to access the controls.'
+							note:'Welcome to the Bulletin Board! On desktop, Hover on the note to access the controls.'
 						}],
 			numNotes:1,
 			addDisabled:false,
@@ -77,7 +77,8 @@ class Board extends React.Component {
 		console.log('number of notes: ' + this.state.numNotes);
 
 		if (this.state.numNotes < this.NUM_LIMIT) {
-			var notesUpdated = this.state.note.concat([{id:(new Date).getTime()}]);
+			/*var notesUpdated = this.state.note.concat([{id:(new Date).getTime()}]);*/
+			var notesUpdated = [{id:(new Date).getTime()}].concat(this.state.note);
 			console.log(this.state.note);
 			
 			this.setState({
@@ -156,13 +157,13 @@ class Board extends React.Component {
 					<nav className="navbar navbar-light bg-light">
 						<a className="navbar-brand" href="#">Bulletin Board</a>
 							<span className="ml-auto">
-									<button  className="btn btn-default mr-2" id='addBtn' disabled={this.state.addDisabled} onClick={this.add}><i class="fa fa-plus" aria-hidden="true"></i></button>
-									<button className="btn btn-default" id='clearBtn' onClick={this.clearAll}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+									<button  className="btn btn-default mr-2" id='addBtn' disabled={this.state.addDisabled} onClick={this.add}><i className="fa fa-plus" aria-hidden="true"></i></button>
+									<button className="btn btn-default" id='clearBtn' onClick={this.clearAll}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
 							</span>
 					</nav>
 				</div>
 				<div className="fixed-bottom" hidden={!this.state.addDisabled}>
-					<div class="alert alert-danger" >
+					<div className="alert alert-danger" >
 						More than {this.NUM_LIMIT} notes are not allowed!
 					</div>
 				</div>
@@ -225,7 +226,7 @@ class Note extends React.Component {
           //top: this.randomBetween().y+'px',
           backgroundColor: '#FFEE58',
           height: this.NoteHeight+'px',
-          //minWidth: this.NoteWidth+'px' 
+          //width: this.NoteWidth+'px' 
 				}
 				
 			})
@@ -293,12 +294,13 @@ class Note extends React.Component {
 			<div className='col-sm-6 col-md-4 col-lg-3'>
 		    <div className='card note' style={this.state.styleState}>
 		    	<div className='card-body'>
+		    		{/**/}
 		    		<textarea style={{'height':this.formHeight+'px'}} ref='newText'>{this.props.note}</textarea>
 	    		</div>
-		    	<div class="card-footer bg-transparent">
+		    	<div className="card-footer bg-transparent">
 	    			<div className="row">
 			    		<div className="ml-auto">
-								<button className='btn btn-success' onClick={this.save}><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+								<button className='btn btn-success' onClick={this.save}><i className="fa fa-floppy-o" aria-hidden="true"></i></button>
 			    		</div>
 		    		</div>
 	    		</div>
@@ -322,8 +324,8 @@ class Note extends React.Component {
 						    		<button id="yellow" className="btn lblBtn"  onClick={this.changeYellow}></button>
 						    		<button id="green" className="btn lblBtn" onClick={this.changeGreen}></button>
 						    		<div className="ml-auto">
-							    		<button className="btn btn-success " onClick={this.edit}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-							    		<button className="btn btn-danger " onClick={this.remove}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+							    		<button className="btn btn-success " onClick={this.edit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+							    		<button className="btn btn-danger " onClick={this.remove}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
 						    		</div>
 					    		</div>
 				    		</div>

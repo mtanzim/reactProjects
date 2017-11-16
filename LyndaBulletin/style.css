@@ -1,5 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Shadows+Into+Light);
-
 /*
 body,
 html,
@@ -35,11 +33,20 @@ div.board {
 
 
 div.note {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   /*position: absolute;*/
-  cursor: -webkit-grab;
+  /*cursor: -webkit-grab;*/
   box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2); 
   overflow: hidden;
+}
+
+/*note display for responsive devices*/
+@media (max-width: 576px) {
+  div.note {
+    max-width: 300px;
+    margin: auto;
+    margin-bottom: 30px;
+  }
 }
 
 /*
@@ -53,32 +60,44 @@ div.note p {
   margin: 0;
   font-size: 16px;
   padding: 5px;
-  /*font-family: "Shadows Into Light", Arial; */ 
+  font-family: 'Raleway', sans-serif; 
 }
 
 div .card-body > textarea {
   width: 100%;
   resize: none;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(255,255,255,0.1) !important;
   overflow: auto;
   outline: none;
   border: none;
 
   margin: 0;
   font-size: 16px;
-  padding: 5px;s
-  /*font-family: "Shadows Into Light", Arial; */ 
+  padding: 5px;
+  font-family: 'Raleway', sans-serif; 
 
 }
 
-div.note:hover > span {
-  opacity: 1;
+
+
+
+@media (max-width: 767px) {
+  div .note > span {
+    opacity: 1;
+  }
 }
 
-div .note > span {
-  /*background-color: white !important;*/
-  opacity: 0;
-  transition: opacity .25s linear;
+
+@media (min-width: 768px) {
+  div .note > span {
+    /*background-color: white !important;*/
+    opacity: 0;
+    transition: opacity .25s linear;
+  }
+
+  div.note:hover > span {
+    opacity: 1;
+  }
 }
 
 
