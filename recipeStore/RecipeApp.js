@@ -9,17 +9,23 @@ class RecipeApp extends React.Component {
 		this.state = {
 			recipes: [{id:1,
 									title:'Coffee', 
-									ing:[{name:'Sugar', qty:2, unit: 'tbsp'}]
+									ing:[{id:100,name:'Sugar', qty:2, unit: 'tbsp'}]
 								},
 								{id:2,
-									title:'Tea', 
-									ing:[{name:'Sugar', qty:2, unit: 'tbsp'}, {name:'Salt', qty:2, unit: 'tbsp'} ]
+									title:'Oolong Tea', 
+									ing:[{id:101,name:'Sugar', qty:2, unit: 'tbsp'}, {id:102, name:'Salt', qty:2, unit: 'tbsp'} ]
 								}],
-			numRecipes:1
+			numRecipes:2
 		};
 
 		this.eachRecipe = this.eachRecipe.bind(this);
+		this.addIngredient = this.addIngredient.bind(this);
 
+	}
+
+	addIngredient(idItem, name, qty, unit) {
+		var newIng = [{id:(new Date).getTime(), name: name, qty: qty, unit: unit}];
+		console.log(newIng);
 	}
 
 	eachRecipe(recipe){
@@ -29,6 +35,7 @@ class RecipeApp extends React.Component {
 				id={recipe.id}
 				title={recipe.title}
 				ingredients={recipe.ing}
+				addIng={this.addIngredient}
 			></RecipeCard>
 		);
 	}
@@ -55,30 +62,14 @@ class RecipeCard extends React.Component {
 	}
 	eachIng(ing){
 		return (
-			<tr>
-				<td>{ing.name}</td>
-				<td><button className="btn">Edit</button></td>
-				<td>{ing.qty}</td>
-				<td><button className="btn">Edit</button></td>
-				<td>{ing.unit}</td>
-				<td><button className="btn">Edit</button></td>
-			</tr>
+			<Ingredient ing={ing} key={ing.id}/>
 		);
 	}
-	/*
-	eachIngKey(ing) {
-		console.log(ing);
-		return (
-				<span>
-					<th>{ing}</th>
-				</span>
-		);
-	}
-	*/
+
 	render () {
 		//console.log(Object.keys(this.props.ingredients[0]));
 		return (
-			<div className='col-12 col-sm-6'>
+			<div className='col-12 col-sm-4'>
 				<div className="card">
 					<h3 className="card-header">{this.props.title}</h3>
 				 	<div className="card-body">
@@ -97,10 +88,29 @@ class RecipeCard extends React.Component {
 				 				{this.props.ingredients.map(this.eachIng)}
 			 				</tbody>
 		 				</table>
-		 				<button className="btn">Add Ingredient</button>
+		 				<button className="btn" onClick={this.props.addIng('milk',2,'tbsp')}>Add Ingredient</button>
 				 	</div>
 				 </div>
 			 </div>
+		);
+	}
+}
+
+class Ingredient extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render () {
+		return (
+			<tr>
+				<td>{this.props.ing.name}</td>
+				<td><button className="btn">Edit</button></td>
+				<td>{this.props.ing.qty}</td>
+				<td><button className="btn">Edit</button></td>
+				<td>{this.props.ing.unit}</td>
+				<td><button className="btn">Edit</button></td>
+			</tr>
+
 		);
 	}
 }
