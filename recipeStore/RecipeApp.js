@@ -23,9 +23,25 @@ class RecipeApp extends React.Component {
 
 	}
 
-	addIngredient(idItem, name, qty, unit) {
-		var newIng = [{id:(new Date).getTime(), name: name, qty: qty, unit: unit}];
-		console.log(newIng);
+	addIngredient(id) {
+		var newIng = [{id:(new Date).getTime(), name: 'milk', qty: 2, unit: 'ml'}];
+		console.log();
+		var recipeUpdated = this.state.recipes.map(function(recipe){
+			if (recipe.id===id){
+				var addedIng=recipe.ing.concat(newIng);
+				return {...recipe,ing:addedIng};
+			} else {
+				return recipe;
+			}
+		});
+
+		this.setState({
+			recipes:recipeUpdated
+		});
+
+		console.log(recipeUpdated);
+
+
 	}
 
 	eachRecipe(recipe){
@@ -58,7 +74,7 @@ class RecipeCard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.eachIng = this.eachIng.bind(this);
-		//this.eachIngKey = this.eachIngKey.bind(this);
+		this.addIngredient = this.addIngredient.bind(this);
 	}
 	eachIng(ing){
 		return (
@@ -66,10 +82,14 @@ class RecipeCard extends React.Component {
 		);
 	}
 
+	addIngredient () {
+		this.props.addIng(this.props.id);
+	}
+
 	render () {
 		//console.log(Object.keys(this.props.ingredients[0]));
 		return (
-			<div className='col-12 col-sm-4'>
+			<div className='col-12 col-sm-6'>
 				<div className="card">
 					<h3 className="card-header">{this.props.title}</h3>
 				 	<div className="card-body">
@@ -88,7 +108,7 @@ class RecipeCard extends React.Component {
 				 				{this.props.ingredients.map(this.eachIng)}
 			 				</tbody>
 		 				</table>
-		 				<button className="btn" onClick={this.props.addIng('milk',2,'tbsp')}>Add Ingredient</button>
+		 				<button className="btn" onClick={this.addIngredient}>Add Ingredient</button>
 				 	</div>
 				 </div>
 			 </div>

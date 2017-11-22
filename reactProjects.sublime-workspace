@@ -1,0 +1,813 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"real",
+				"realPerson"
+			],
+			[
+				"add",
+				"addIngredient"
+			],
+			[
+				"new",
+				"newIng"
+			],
+			[
+				"over",
+				"overflow"
+			],
+			[
+				"Re",
+				"Recipe"
+			],
+			[
+				"each",
+				"eachIngKey"
+			],
+			[
+				"eac",
+				"eachIng"
+			],
+			[
+				"clSS",
+				"className"
+			],
+			[
+				"sa",
+				"sayings"
+			],
+			[
+				"wr",
+				"writeWaitPct"
+			],
+			[
+				"wai",
+				"waitTime"
+			],
+			[
+				"a",
+				"answers"
+			],
+			[
+				"std",
+				"stdout"
+			],
+			[
+				"margi",
+				"margin-bottom"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"render",
+				"renderBreak"
+			],
+			[
+				"re",
+				"renderBreak"
+			],
+			[
+				"stae",
+				"setState"
+			],
+			[
+				"onC",
+				"onClick"
+			],
+			[
+				"oc",
+				"onClick"
+			],
+			[
+				"nav",
+				"navbar"
+			],
+			[
+				"chan",
+				"changeYellow"
+			],
+			[
+				"Note",
+				"NoteWidth"
+			],
+			[
+				"fixed-",
+				"fixed-bottom"
+			],
+			[
+				"comp",
+				"componentDidUpdate"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"body",
+				"bodyHeight"
+			],
+			[
+				"bor",
+				"border"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"sty",
+				"styleState"
+			],
+			[
+				"onCha",
+				"onColorChange"
+			],
+			[
+				"change",
+				"changeColor"
+			],
+			[
+				"ra",
+				"randomBetween"
+			],
+			[
+				"ran",
+				"randPosY"
+			],
+			[
+				"next",
+				"nextProps"
+			],
+			[
+				"b",
+				"backgroundColor"
+			],
+			[
+				"chna",
+				"changeColor"
+			],
+			[
+				"C",
+				"changeColor"
+			],
+			[
+				"on",
+				"onClick"
+			],
+			[
+				"chane",
+				"changeColor"
+			],
+			[
+				"note",
+				"noteStyle"
+			],
+			[
+				"no",
+				"note"
+			],
+			[
+				"num",
+				"numNotes"
+			],
+			[
+				"notes",
+				"notesUpdated"
+			],
+			[
+				"text",
+				"textContent"
+			],
+			[
+				"LOAD",
+				"loadProjects"
+			],
+			[
+				"pro",
+				"projectsNames"
+			],
+			[
+				"proj",
+				"projId"
+			],
+			[
+				"bn",
+				"btn-default"
+			],
+			[
+				"btn",
+				"btn-default"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"col",
+				"col-md-offset-2"
+			],
+			[
+				"is",
+				"isGlobalOn"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"toggl",
+				"toggleClass"
+			],
+			[
+				"cont",
+				"contBts"
+			],
+			[
+				"con",
+				"contBts"
+			],
+			[
+				"enab",
+				"enableButtons"
+			],
+			[
+				"en",
+				"enableButtons"
+			],
+			[
+				"disab",
+				"disableButtons"
+			],
+			[
+				"DE",
+				"DELAY_VAL_RST"
+			],
+			[
+				"set",
+				"setInterval"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"margn",
+				"margin-top"
+			],
+			[
+				"equat",
+				"equationFunc"
+			],
+			[
+				"cal",
+				"calcInp"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"eq",
+				"equationFunc"
+			],
+			[
+				"las",
+				"lastChar"
+			],
+			[
+				"main",
+				"mainText"
+			],
+			[
+				"te",
+				"tempMainText"
+			],
+			[
+				"min",
+				"mainText"
+			],
+			[
+				"winn",
+				"winningPlayer"
+			],
+			[
+				"get",
+				"getPlayers"
+			],
+			[
+				"P1",
+				"P1Char"
+			],
+			[
+				"p1",
+				"P1Char"
+			],
+			[
+				"glob",
+				"globalTicTacVars"
+			],
+			[
+				"gloa",
+				"globalTicTacVars"
+			],
+			[
+				"star",
+				"startGame"
+			],
+			[
+				"restart",
+				"restartGlobal"
+			],
+			[
+				"glo",
+				"globalTicTacVars"
+			],
+			[
+				"calc",
+				"calcInput"
+			],
+			[
+				"sub",
+				"subText"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"font",
+				"font-style"
+			],
+			[
+				"ci",
+				"circleProg"
+			],
+			[
+				"cil",
+				"circleWorkProg"
+			],
+			[
+				"del",
+				"delayVal"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"time",
+				"timeLabel"
+			],
+			[
+				"aler",
+				"alertPressed"
+			],
+			[
+				"cold",
+				"col-md-offset-2"
+			],
+			[
+				"res",
+				"reset"
+			],
+			[
+				"glon",
+				"globalSimonVars"
+			],
+			[
+				"globa",
+				"globalSimonVars"
+			],
+			[
+				"in",
+				"includes"
+			],
+			[
+				"pla",
+				"playerStat"
+			],
+			[
+				"AI",
+				"AIstat"
+			],
+			[
+				"player",
+				"playerStat"
+			],
+			[
+				"playe",
+				"playerStat"
+			],
+			[
+				"cur",
+				"curWinCase"
+			],
+			[
+				"cu",
+				"curWinCase"
+			],
+			[
+				"getWi",
+				"getWinCases"
+			],
+			[
+				"win",
+				"winCases"
+			],
+			[
+				"nu",
+				"numPlayers"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"stat",
+				"statDiv"
+			],
+			[
+				"bt",
+				"btnClass"
+			],
+			[
+				"game",
+				"gameDiv"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "recipeStore/index.html",
+			"settings":
+			{
+				"buffer_size": 2291,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "recipeStore/RecipeApp.js",
+			"settings":
+			{
+				"buffer_size": 2554,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "recipeStore/style.css",
+			"settings":
+			{
+				"buffer_size": 119,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 236.0,
+		"last_filter": "insta",
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 428.0
+	},
+	"console":
+	{
+		"height": 164.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/xampp/htdocs/reactProjects",
+		"/C/xampp/htdocs/reactProjects/recipeStore"
+	],
+	"file_history":
+	[
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch05/05_03/start/Tanzim.md",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch05/05_03/start/create.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch05/05_03/start/promptPerson.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch03/03_01/start/global.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch03/03_02/start/app.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch03/03_03/start/ask.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch03/03_04/start/timers.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch04/04_01/start/core.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch04/04_03/start/BenFranklin.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch04/04_03/start/lib/person.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/NodeJSExercise/Ex_Files_Nodejs_EssT/Exercise Files/Ch04/04_03/finish/BenFranklin.js",
+		"/C/xampp/htdocs/reactProjects/LyndaBulletin/style.css",
+		"/C/xampp/htdocs/reactProjects/LyndaBulletin/App.js",
+		"/C/xampp/htdocs/reactProjects/LyndaBulletin/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/common/footer.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/pomodoro/pomodoro.js",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/React Essentials/Ex_Files_ReactJS_Basics/Ex_Files_ReactJS_Basics/Ch05/05_01/finish/index.html",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/React Essentials/Ex_Files_ReactJS_Basics/Ex_Files_ReactJS_Basics/Ch05/05_02/finish/index.html",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/React Essentials/Ex_Files_ReactJS_Basics/Ex_Files_ReactJS_Basics/Ch05/05_08/finish/index.html",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/React Essentials/Ex_Files_ReactJS_Basics/Ex_Files_ReactJS_Basics/Ch04/04_06/finish/index.html",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/React Essentials/Ex_Files_ReactJS_Basics/Ex_Files_ReactJS_Basics/Ch04/04_07/finish/index.html",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/React Essentials/Ex_Files_ReactJS_Basics/Ex_Files_ReactJS_Basics/Ch04/04_05/finish/index.html",
+		"/C/Users/PC/Documents/Lynda.com/Exercise Files/React Essentials/Ex_Files_ReactJS_Basics/Ex_Files_ReactJS_Basics/Ch04/04_04/finish/index.html",
+		"/C/Users/PC/my-app/README.md",
+		"/C/Users/PC/my-app/src/registerServiceWorker.js",
+		"/C/Users/PC/my-app/src/index.js",
+		"/C/Users/PC/my-app/src/App.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/calculator/style.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/common/footer.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/FrankOcean/style.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/common/footerBS3.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/scrolling.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/calculator/calculator.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/styleM.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/calculator/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/FrankOcean/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/localWeather/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/pomodoro/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/quoteGen/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/simon/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/tictactoe/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/twitchStatus/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/wikiView/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/extras/miscExercises/roman.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/extras/miscExercises/roman2.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/simon/style.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/localWeather/getWeather.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/simon/simon.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/MokaTek/indexM.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/localWeather/indexW.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/simon/simon.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/MokaTek/scrolling.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/localWeather/style.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/MokaTek/styleM.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/FrankOcean/index.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/calculator/calculator.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/pomodoro/pomodoro.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/calculator/calculator.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/tictactoe/tictactoe.js",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/calculator/style.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/pomodoro/style.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/tictactoe/style.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/pomodoro/pomodoro.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndAdvanced/tictactoe/tictactoe.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/common/footer.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/NikolaTeslaTest/style.css",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/NikolaTeslaTest/tesla.html",
+		"/C/xampp/htdocs/freecodecamp/freecodecamp/frontEndIntmd/NikolaTeslaTest/tesla.html.txt",
+		"/C/Users/PC/Documents/programming/miscProjects/checkBankStatements/README.MD",
+		"/C/Users/PC/Documents/programming/miscProjects/checkBankStatements/checkBankStatements.py",
+		"/C/Users/PC/Documents/programming/miscProjects/checkBankStatements/08.csv",
+		"/C/Users/PC/Desktop/report.csv"
+	],
+	"find":
+	{
+		"height": 30.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "recipeStore/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2291,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "recipeStore/RecipeApp.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2554,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								728,
+								728
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 2,
+					"file": "recipeStore/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 119,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 30.0
+	},
+	"input":
+	{
+		"height": 44.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.819428571429,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "reactProjects.sublime-project",
+	"replace":
+	{
+		"height": 56.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 170.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 2
+	}
+}
