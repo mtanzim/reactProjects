@@ -144,7 +144,8 @@ class RecipeApp extends React.Component {
 		return (
 			<div className="container">
 				<h1>Recipe List</h1>
-				<button type="button" className="btn btn-default" dataToggle="modal" dataTarget="#myModal" onClick={this.addRecipe}>Add Recipe</button>
+				<AddRecipeForm/>
+				<button type="button" className="btn btn-default" onClick={this.addRecipe}>Add Recipe</button>
 				<button className="ml-2 btn btn-danger" onClick={this.removeAll}>Delete All</button>
 				<div className="row">
 					{this.state.recipes.map(this.eachRecipe)}
@@ -155,36 +156,6 @@ class RecipeApp extends React.Component {
 }
 
 
-/*
-class RecipeInput extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-	render() {
-		return (
-			<div className="modal fade" id="myModal" tabindex="-1" role="dialog" ariaLabelledby="exampleModalLabel" ariaHidden="true">
-			  <div className="modal-dialog" role="document">
-			    <div className="modal-content">
-			      <div className="modal-header">
-			        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-			        <button type="button" class="close" dataDismiss="modal" ariaLabel="Close">
-			          <span ariaHidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div className="modal-body">
-			        ...
-			      </div>
-			      <div className="modal-footer">
-			        <button type="button" className="btn btn-secondary" dataDismiss="modal">Close</button>
-			        <button type="button" className="btn btn-primary">Save changes</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
-		);
-	}
-}
-*/
 
 class RecipeCard extends React.Component {
 	constructor(props) {
@@ -232,6 +203,7 @@ class RecipeCard extends React.Component {
 						</div>
 					</div>	
 				 	<div className="card-body">
+				 		<AddIngForm/>
 				 		<button className="btn" onClick={this.addIngredient}>Add Ingredient</button>
 		 				<button className="ml-2 btn btn-danger" onClick={this.delAllIngredient}>Remove All</button>
 			 			<table>
@@ -252,6 +224,47 @@ class RecipeCard extends React.Component {
 				 	</div>
 				 </div>
 			 </div>
+		);
+	}
+}
+
+class AddRecipeForm extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render () {
+		return (
+			<form>
+			  <div className="form-row">
+			    <div className="form-group col">
+			      <input type="text" className="form-control" id="recipeName" placeholder="Recipe Name"></input>
+			    </div>
+		    </div>
+			</form>
+		);
+	}
+}
+
+class AddIngForm extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	render () {
+		return (
+			<form>
+		    <div className="form-row">
+			    <div className="form-group col-12">
+			      <input type="text" className="form-control" id="ingName" placeholder="Ingredient Name"></input>
+			    </div>
+			    <div className="form-group col">
+			      <input type="text" className="form-control" id="Qty" placeholder="Qty"></input>
+			    </div>
+			    <div className="form-group col">
+			      <input type="text" className="form-control" id="Unit" placeholder="Unit"></input>
+			    </div>
+			  </div>
+			</form>
 		);
 	}
 }

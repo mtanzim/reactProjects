@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"inde",
+				"index"
+			],
+			[
 				"in",
 				"indexToDel"
 			],
@@ -18,10 +22,6 @@
 			[
 				"re",
 				"remRecipe"
-			],
-			[
-				"inde",
-				"indexToDel"
 			],
 			[
 				"Re",
@@ -491,7 +491,7 @@
 			"file": "recipeStore/RecipeApp.js",
 			"settings":
 			{
-				"buffer_size": 4682,
+				"buffer_size": 6644,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -632,7 +632,7 @@
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 43.0
 	},
 	"find_in_files":
 	{
@@ -703,15 +703,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4682,
+						"buffer_size": 6644,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1246,
-								1246
+								1012,
+								1012
 							]
 						],
 						"settings":
@@ -721,7 +721,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 594.0,
+						"translation.y": 3696.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
