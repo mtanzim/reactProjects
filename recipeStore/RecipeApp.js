@@ -7,15 +7,10 @@ class RecipeApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			recipes: [{id:1,
-									title:'Coffee', 
-									ing:[{id:100,name:'Sugar', qty:2, unit: 'tbsp'}]
-								},
-								{id:2,
-									title:'Oolong Tea', 
-									ing:[{id:101,name:'Sugar', qty:2, unit: 'tbsp'}, {id:102, name:'Salt', qty:2, unit: 'tbsp'} ]
-								}],
-			numRecipes:2
+			recipes: [],
+			numRecipes:2,
+			newRecipeName: '',
+			newIng: {id:0, title:'', qty:0, unit:''}
 		};
 
 		this.eachRecipe = this.eachRecipe.bind(this);
@@ -25,11 +20,15 @@ class RecipeApp extends React.Component {
 		this.addRecipe = this.addRecipe.bind(this);
 		this.remRecipe = this.remRecipe.bind(this);
 		this.removeAll = this.removeAll.bind(this);
+		this.handleAddRecipe = this.handleAddRecipe.bind(this);
+		this.handleAddIngTitle = this.handleAddIngTitle.bind(this);
+		this.handleAddIngQty = this.handleAddIngQty.bind(this);
+		this.handleAddIngUnit = this.handleAddIngUnit.bind(this);
 
 	}
 
 	addRecipe() {
-		var updatedRecipe = this.state.recipes.concat([{id:(new Date).getTime(), title:'Chai Latte', ing:[{}]}])
+		var updatedRecipe = this.state.recipes.concat([{id:(new Date).getTime(), title:this.state.newRecipeName, ing:[{}]}])
 		this.setState({
 			recipes:updatedRecipe,
 			numRecipes: this.state.numRecipes+1
@@ -38,13 +37,35 @@ class RecipeApp extends React.Component {
 		
 	}
 
+	handleAddIngTitle (event){
+		this.setState({
+	 		newIng:{...this.state.newIng,title:event.target.value}
+		});
+	}
+	handleAddIngQty (event){
+		this.setState({
+	 		newIng:{...this.state.newIng,qty:event.target.value}
+		});
+	}
+	handleAddIngUnit (event){
+		this.setState({
+	 		newIng:{...this.state.newIng,unit:event.target.value}
+		});
+	}
+
+	handleAddRecipe (event) {
+		this.setState({
+	 		newRecipeName:event.target.value,
+		});
+	}
+
 	remRecipe(id) {
 		var indexToDel=-1;
 		this.state.recipes.forEach(function(recipe, index){
 			if (recipe.id===id){
 				indexToDel=index;
 			}
-		});
+	});
 
 		console.log(`index to del is ${indexToDel}`);
 
@@ -66,7 +87,8 @@ class RecipeApp extends React.Component {
 	} 
 
 	addIngredient(id) {
-		var newIng = [{id:(new Date).getTime(), name: 'milk', qty: 2, unit: 'ml'}];
+		//var newIng = [{id:(new Date).getTime(), name: this.state.newIng.title, qty: 2, unit: 'ml'}];
+		var newIng = {...this.state.newIng,id:(new Date).getTime()}
 		console.log();
 		var recipeUpdated = this.state.recipes.map(function(recipe){
 			if (recipe.id===id){
@@ -136,6 +158,9 @@ class RecipeApp extends React.Component {
 				remRecipe={this.remRecipe}
 				delAllIng={this.delAllIngredient}
 				delIng={this.delIngredient}
+				handleIngTitle={this.handleAddIngTitle}
+				handleIngQty={this.handleAddIngQty}
+				handleIngUnit={this.handleAddIngUnit}
 			></RecipeCard>
 		);
 	}
@@ -144,7 +169,11 @@ class RecipeApp extends React.Component {
 		return (
 			<div className="container">
 				<h1>Recipe List</h1>
-				<AddRecipeForm/>
+				{/*<h1>{this.state.newRecipeName}</h1>
+				<h1>{this.state.newIng.title}</h1>
+				<h1>{this.state.newIng.qty}</h1>
+				<h1>{this.state.newIng.unit}</h1>*/}
+				<AddRecipeForm onChange={this.handleAddRecipe}/>
 				<button type="button" className="btn btn-default" onClick={this.addRecipe}>Add Recipe</button>
 				<button className="ml-2 btn btn-danger" onClick={this.removeAll}>Delete All</button>
 				<div className="row">
@@ -165,6 +194,7 @@ class RecipeCard extends React.Component {
 		this.removeRecipe = this.removeRecipe.bind(this);
 		this.delAllIngredient = this.delAllIngredient.bind(this);
 	}
+
 	eachIng(ing){
 		if (Object.keys(ing).length !== 0){
 			return (
@@ -203,7 +233,9 @@ class RecipeCard extends React.Component {
 						</div>
 					</div>	
 				 	<div className="card-body">
-				 		<AddIngForm/>
+				 		<AddIngForm handleIngTitle={this.props.handleIngTitle} 
+				 								handleIngQty={this.props.handleIngQty}
+				 								handleIngUnit={this.props.handleIngUnit}/>
 				 		<button className="btn" onClick={this.addIngredient}>Add Ingredient</button>
 		 				<button className="ml-2 btn btn-danger" onClick={this.delAllIngredient}>Remove All</button>
 			 			<table>
@@ -220,7 +252,6 @@ class RecipeCard extends React.Component {
 				 				{this.props.ingredients.map(this.eachIng)}
 			 				</tbody>
 		 				</table>
-
 				 	</div>
 				 </div>
 			 </div>
@@ -238,7 +269,7 @@ class AddRecipeForm extends React.Component {
 			<form>
 			  <div className="form-row">
 			    <div className="form-group col">
-			      <input type="text" className="form-control" id="recipeName" placeholder="Recipe Name"></input>
+			      <input onChange={this.props.onChange} type="text" className="form-control" id="recipeName" placeholder="Recipe Name"></input>
 			    </div>
 		    </div>
 			</form>
@@ -255,13 +286,13 @@ class AddIngForm extends React.Component {
 			<form>
 		    <div className="form-row">
 			    <div className="form-group col-12">
-			      <input type="text" className="form-control" id="ingName" placeholder="Ingredient Name"></input>
+			      <input onChange={this.props.handleIngTitle} type="text" className="form-control" id="ingName" placeholder="Ingredient Name"></input>
 			    </div>
 			    <div className="form-group col">
-			      <input type="text" className="form-control" id="Qty" placeholder="Qty"></input>
+			      <input onChange={this.props.handleIngQty} type="text" className="form-control" id="qty" placeholder="Qty"></input>
 			    </div>
 			    <div className="form-group col">
-			      <input type="text" className="form-control" id="Unit" placeholder="Unit"></input>
+			      <input onChange={this.props.handleIngUnit} type="text"  className="form-control" id="unit" placeholder="Unit"></input>
 			    </div>
 			  </div>
 			</form>
@@ -281,7 +312,7 @@ class Ingredient extends React.Component {
 	render () {
 		return (
 			<tr>
-				<td>{this.props.ing.name}</td>
+				<td>{this.props.ing.title}</td>
 				<td>{this.props.ing.qty}</td>
 				<td>{this.props.ing.unit}</td>
 				<td><button className="btn">Edit</button></td>
