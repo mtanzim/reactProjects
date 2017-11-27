@@ -10,7 +10,7 @@ class RecipeApp extends React.Component {
 			recipes: [],
 			numRecipes:2,
 			newRecipeName: '',
-			newIng: {id:0, title:'', qty:0, unit:''}
+			newIng: {id:0, title:'', qty:0, unit:''},
 		};
 
 		this.eachRecipe = this.eachRecipe.bind(this);
@@ -24,7 +24,23 @@ class RecipeApp extends React.Component {
 		this.handleAddIngTitle = this.handleAddIngTitle.bind(this);
 		this.handleAddIngQty = this.handleAddIngQty.bind(this);
 		this.handleAddIngUnit = this.handleAddIngUnit.bind(this);
+		this.editRecipName = this.editRecipName.bind(this);
 
+	}
+
+	editRecipName(id,newName) {
+		console.log(newName+ ' for '+id);
+		var recipeUpdated = this.state.recipes.map(
+			recipe => (recipe.id !== id) ?
+				recipe :
+				{...recipe,
+					title:newName} 
+		);
+		this.setState({
+			recipes:recipeUpdated
+		});
+
+		//console.log(this.state.recipes)
 	}
 
 	addRecipe() {
@@ -55,7 +71,7 @@ class RecipeApp extends React.Component {
 
 	handleAddRecipe (event) {
 		this.setState({
-	 		newRecipeName:event.target.value,
+	 		newRecipeName:event.target.value
 		});
 	}
 
@@ -161,6 +177,7 @@ class RecipeApp extends React.Component {
 				handleIngTitle={this.handleAddIngTitle}
 				handleIngQty={this.handleAddIngQty}
 				handleIngUnit={this.handleAddIngUnit}
+				saveEdit = {this.editRecipName}
 			></RecipeCard>
 		);
 	}
@@ -189,10 +206,17 @@ class RecipeApp extends React.Component {
 class RecipeCard extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			editing:false,
+			editedRecipeName:''
+		};
+
 		this.eachIng = this.eachIng.bind(this);
 		this.addIngredient = this.addIngredient.bind(this);
 		this.removeRecipe = this.removeRecipe.bind(this);
 		this.delAllIngredient = this.delAllIngredient.bind(this);
+		this.saveEditedName = this.saveEditedName.bind(this);
+		this.handleEditRecipeName = this.handleEditRecipeName.bind(this);
 	}
 
 	eachIng(ing){
@@ -219,6 +243,15 @@ class RecipeCard extends React.Component {
 		this.props.delAllIng(this.props.id);
 	}
 
+	saveEditedName() {
+			this.props.saveEdit(this.props.id, this.state.editedRecipeName);
+	}
+	handleEditRecipeName (event) {
+		this.setState({
+	 		editedRecipeName:event.target.value
+		});
+	}
+
 
 	render () {
 		//console.log(Object.keys(this.props.ingredients[0]));
@@ -231,8 +264,22 @@ class RecipeCard extends React.Component {
 							<button className="ml-2 btn btn-default" >Edit</button>
 							<button className="ml-2 btn btn-danger" onClick={this.removeRecipe}>Remove</button>
 						</div>
-					</div>	
+					</div>
+						
+
+		
 				 	<div className="card-body">
+				 		{/*<p>{this.state.editedRecipeName}</p>*/}
+						<form >
+			  				<div className="form-row">
+			    				<div className="form-group col">
+			      				<input  onChange={this.handleEditRecipeName} type="text" className="form-control" id="recipeEdit" placeholder="New Recipe Name"></input>
+			    			</div>
+							</div>
+						</form>
+
+						<button className="btn mb-4" onClick={this.saveEditedName}>Save</button>
+
 				 		<AddIngForm handleIngTitle={this.props.handleIngTitle} 
 				 								handleIngQty={this.props.handleIngQty}
 				 								handleIngUnit={this.props.handleIngUnit}/>

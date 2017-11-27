@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"new",
+				"newIng"
+			],
+			[
+				"addRe",
+				"handleAddRecipe"
+			],
+			[
+				"Add",
+				"AddRecipeForm"
+			],
+			[
 				"inde",
 				"index"
 			],
@@ -62,10 +74,6 @@
 			[
 				"real",
 				"realPerson"
-			],
-			[
-				"new",
-				"newIng"
 			],
 			[
 				"over",
@@ -491,7 +499,7 @@
 			"file": "recipeStore/RecipeApp.js",
 			"settings":
 			{
-				"buffer_size": 6644,
+				"buffer_size": 8486,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -632,7 +640,7 @@
 	],
 	"find":
 	{
-		"height": 43.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
@@ -646,6 +654,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\t\t\t\t\t</div>\t",
+			"AddRecipeForm",
 			"onColorChange"
 		],
 		"highlight": true,
@@ -703,15 +713,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6644,
+						"buffer_size": 8486,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1012,
-								1012
+								5738,
+								5738
 							]
 						],
 						"settings":
@@ -721,7 +731,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3696.0,
+						"translation.y": 5148.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -740,8 +750,8 @@
 						"selection":
 						[
 							[
-								5794,
-								5800
+								2295,
+								2093
 							]
 						],
 						"settings":
@@ -751,7 +761,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 3498.0,
+						"translation.y": 1989.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
