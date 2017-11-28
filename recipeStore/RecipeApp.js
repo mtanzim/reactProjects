@@ -11,6 +11,8 @@ class RecipeApp extends React.Component {
 			numRecipes:2,
 			newRecipeName: '',
 			newIng: {id:0, title:'', qty:0, unit:''},
+			editing:false,
+			addRecipeStyleState: {display:'none'}
 		};
 
 		this.eachRecipe = this.eachRecipe.bind(this);
@@ -25,9 +27,24 @@ class RecipeApp extends React.Component {
 		this.handleAddIngQty = this.handleAddIngQty.bind(this);
 		this.handleAddIngUnit = this.handleAddIngUnit.bind(this);
 		this.editRecipName = this.editRecipName.bind(this);
+		this.toggleAddRecipe = this.toggleAddRecipe.bind(this);
+
 
 	}
+	toggleAddRecipe() {
+		if(this.state.editing){
+			this.setState({
+				addRecipeStyleState: {display:'none'},
+				editing:false
+			});
+		} else {
+			this.setState({
+				addRecipeStyleState: {display:'block'},
+				editing:true
+			});
+		}
 
+	}
 	editRecipName(id,newName) {
 		console.log(newName+ ' for '+id);
 		var recipeUpdated = this.state.recipes.map(
@@ -49,8 +66,7 @@ class RecipeApp extends React.Component {
 			recipes:updatedRecipe,
 			numRecipes: this.state.numRecipes+1
 		});
-		
-		
+		this.toggleAddRecipe();
 	}
 
 	handleAddIngTitle (event){
@@ -81,7 +97,7 @@ class RecipeApp extends React.Component {
 			if (recipe.id===id){
 				indexToDel=index;
 			}
-	});
+		});
 
 		console.log(`index to del is ${indexToDel}`);
 
@@ -190,9 +206,11 @@ class RecipeApp extends React.Component {
 				<h1>{this.state.newIng.title}</h1>
 				<h1>{this.state.newIng.qty}</h1>
 				<h1>{this.state.newIng.unit}</h1>*/}
-				<AddRecipeForm onChange={this.handleAddRecipe}/>
-				<button type="button" className="btn btn-default" onClick={this.addRecipe}>Add Recipe</button>
+				<button type="button" className="btn btn-default" onClick={this.toggleAddRecipe}>Add Recipe</button>
 				<button className="ml-2 btn btn-danger" onClick={this.removeAll}>Delete All</button>
+				<div style={this.state.addRecipeStyleState} className="mt-4">
+					<AddRecipeForm onChange={this.handleAddRecipe} onSaveButton={this.addRecipe}/>
+				</div>
 				<div className="row">
 					{this.state.recipes.map(this.eachRecipe)}
 				</div>
@@ -207,8 +225,11 @@ class RecipeCard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			editing:false,
-			editedRecipeName:''
+			editingName:false,
+			AddingIng:false,
+			editedRecipeName:'',
+			editRecipeStyleState: {display:'none'},
+			addIngStyleState: {display:'none'}
 		};
 
 		this.eachIng = this.eachIng.bind(this);
@@ -217,6 +238,8 @@ class RecipeCard extends React.Component {
 		this.delAllIngredient = this.delAllIngredient.bind(this);
 		this.saveEditedName = this.saveEditedName.bind(this);
 		this.handleEditRecipeName = this.handleEditRecipeName.bind(this);
+		this.handleClickEditRecipe = this.handleClickEditRecipe.bind(this);
+		this.handleClickAddIng = this.handleClickAddIng.bind(this);
 	}
 
 	eachIng(ing){
@@ -238,6 +261,7 @@ class RecipeCard extends React.Component {
 
 	addIngredient () {
 		this.props.addIng(this.props.id);
+		this.handleClickAddIng();
 	}
 	delAllIngredient () {
 		this.props.delAllIng(this.props.id);
@@ -245,11 +269,39 @@ class RecipeCard extends React.Component {
 
 	saveEditedName() {
 			this.props.saveEdit(this.props.id, this.state.editedRecipeName);
+			this.handleClickEditRecipe();
 	}
 	handleEditRecipeName (event) {
 		this.setState({
 	 		editedRecipeName:event.target.value
 		});
+	}
+
+	handleClickEditRecipe(){
+		if(this.state.editingName){
+			this.setState({
+				editRecipeStyleState: {display:'none'},
+				editingName:false
+			});
+		} else {
+			this.setState({
+				editRecipeStyleState: {display:'block'},
+				editingName:true
+			});
+		}
+	}
+	handleClickAddIng(){
+		if(this.state.AddingIng){
+			this.setState({
+				addIngStyleState: {display:'none'},
+				AddingIng:false
+			});
+		} else {
+			this.setState({
+				addIngStyleState: {display:'block'},
+				AddingIng:true
+			});
+		}
 	}
 
 
@@ -261,7 +313,7 @@ class RecipeCard extends React.Component {
 					<div className="card-header">
 						<h3>{this.props.title}</h3>
 						<div className="row">
-							<button className="ml-2 btn btn-default" >Edit</button>
+							<button className="ml-2 btn btn-default" onClick={this.handleClickEditRecipe} >Edit</button>
 							<button className="ml-2 btn btn-danger" onClick={this.removeRecipe}>Remove</button>
 						</div>
 					</div>
@@ -270,21 +322,27 @@ class RecipeCard extends React.Component {
 		
 				 	<div className="card-body">
 				 		{/*<p>{this.state.editedRecipeName}</p>*/}
-						<form >
-			  				<div className="form-row">
-			    				<div className="form-group col">
-			      				<input  onChange={this.handleEditRecipeName} type="text" className="form-control" id="recipeEdit" placeholder="New Recipe Name"></input>
-			    			</div>
-							</div>
-						</form>
+				 		<div id="editToggle" style={this.state.editRecipeStyleState}>
+							<form >
+				  				<div className="form-row">
+				    				<div className="form-group col">
+				      				<input  onChange={this.handleEditRecipeName} type="text" className="form-control" id="recipeEdit" placeholder="New Recipe Name"></input>
+				    			</div>
+								</div>
+							</form>
 
-						<button className="btn mb-4" onClick={this.saveEditedName}>Save</button>
+							<button className="btn mb-4" onClick={this.saveEditedName}>Save</button>
+						</div>
 
-				 		<AddIngForm handleIngTitle={this.props.handleIngTitle} 
-				 								handleIngQty={this.props.handleIngQty}
-				 								handleIngUnit={this.props.handleIngUnit}/>
-				 		<button className="btn" onClick={this.addIngredient}>Add Ingredient</button>
+				 		
+				 		<button className="btn" onClick={this.handleClickAddIng}>Add Ingredient</button>
 		 				<button className="ml-2 btn btn-danger" onClick={this.delAllIngredient}>Remove All</button>
+		 				<div className="mt-2" style={this.state.addIngStyleState}>
+			 				<AddIngForm handleIngTitle={this.props.handleIngTitle} 
+					 								handleIngQty={this.props.handleIngQty}
+					 								handleIngUnit={this.props.handleIngUnit}/>
+							<button onClick={this.addIngredient} className="btn">Save</button>
+						</div>
 			 			<table>
 			 				<thead>
 				 				<tr>
@@ -317,6 +375,7 @@ class AddRecipeForm extends React.Component {
 			  <div className="form-row">
 			    <div className="form-group col">
 			      <input onChange={this.props.onChange} type="text" className="form-control" id="recipeName" placeholder="Recipe Name"></input>
+			    	<button type="button" onClick={this.props.onSaveButton} className="btn mt-2">Save</button>
 			    </div>
 		    </div>
 			</form>
