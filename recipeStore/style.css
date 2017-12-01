@@ -5,10 +5,10 @@
 
 
 td {
-  border: none;
+  /*border: 1px solid black;*/
 }
 
 th {
-  border-bottom: soild 1px black;
+  border-bottom: 1px solid black;
 }
 
