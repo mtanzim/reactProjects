@@ -314,7 +314,7 @@ class Note extends React.Component {
   			
 	    		<div className='col-sm-6 col-md-4 col-lg-3'>
 				    <div className='card note' style={this.state.styleState}>
-				    	<div className='card-body'>
+				    	<div onClick={this.edit} className='card-body'>
 					    	<p>{this.props.note}</p>
 				    	</div>
 				    	<span>
