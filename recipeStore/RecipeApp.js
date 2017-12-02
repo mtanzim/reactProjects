@@ -28,6 +28,7 @@ class RecipeApp extends React.Component {
 		this.handleAddIngUnit = this.handleAddIngUnit.bind(this);
 		this.editRecipName = this.editRecipName.bind(this);
 		this.toggleAddRecipe = this.toggleAddRecipe.bind(this);
+		this.editIngredient = this.editIngredient.bind(this);
 		//this.renderAddRecipeForm = this.renderAddRecipeForm.bind(this);
 
 
@@ -57,6 +58,7 @@ class RecipeApp extends React.Component {
 		this.setState({
 			recipes:updatedRecipe,
 			numRecipes: this.state.numRecipes+1,
+			newRecipeName: ''
 		});
 		this.toggleAddRecipe();
 	}
@@ -124,7 +126,8 @@ class RecipeApp extends React.Component {
 		});
 
 		this.setState({
-			recipes:recipeUpdated
+			recipes:recipeUpdated,
+			newIng: {id:0, title:'', qty:0, unit:''}
 		});
 
 		console.log(recipeUpdated);
@@ -145,7 +148,29 @@ class RecipeApp extends React.Component {
 		});
 
 		var recipeUpdated = this.state.recipes;
-		this.state.recipes[recIndexToDel].ing.splice(ingIndexToDel,1);
+		recipeUpdated[recIndexToDel].ing.splice(ingIndexToDel,1);
+		this.setState({
+			recipes:recipeUpdated
+		});
+
+	}
+	editIngredient(id, ingId, editedIng) {
+		var recIndexToEdit=-1;
+		var ingIndexToEdit=-1;
+		this.state.recipes.forEach(function(recipe, index){
+			if (recipe.id===id){
+				recIndexToEdit=index;
+				recipe.ing.forEach(function(ing,ingIndex){
+					if (ing.id===ingId){
+						ingIndexToEdit=ingIndex;
+					}
+				});
+			}
+		});
+
+		var recipeUpdated = this.state.recipes;
+		recipeUpdated[recIndexToEdit].ing[ingIndexToEdit]=editedIng;
+		console.log(recipeUpdated);	
 		this.setState({
 			recipes:recipeUpdated
 		});
@@ -182,6 +207,7 @@ class RecipeApp extends React.Component {
 				remRecipe={this.remRecipe}
 				delAllIng={this.delAllIngredient}
 				delIng={this.delIngredient}
+				editIngredient={this.editIngredient}
 				handleIngTitle={this.handleAddIngTitle}
 				handleIngQty={this.handleAddIngQty}
 				handleIngUnit={this.handleAddIngUnit}
@@ -217,6 +243,7 @@ class RecipeCard extends React.Component {
 			editingName:false,
 			AddingIng:false,
 			editedRecipeName:'',
+			editedIng:this.props.ingredients
 			//editRecipeStyleState: {display:'none'},
 			//addIngStyleState: {display:'none'}
 		};
@@ -241,11 +268,13 @@ class RecipeCard extends React.Component {
 									  delIng={this.props.delIng}
 									  handleIngTitle={this.props.handleIngTitle} 
 		 								handleIngQty={this.props.handleIngQty}
-		 								handleIngUnit={this.props.handleIngUnit}/>
+		 								handleIngUnit={this.props.handleIngUnit}
+		 								saveEdit={this.props.editIngredient}/>
 			);
 		}
 		
 	}
+
 
 	removeRecipe(){
 		this.props.remRecipe(this.props.id);
@@ -382,10 +411,35 @@ class Ingredient extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			editing:false
+			editing:false,
+			editedTitle:this.props.ing.title,
+			editedQty:this.props.ing.qty,
+			editedUnit:this.props.ing.unit
 		};
 		this.deleteIngredient = this.deleteIngredient.bind(this);
 		this.handleClickEdit = this.handleClickEdit.bind(this);
+
+		this.handleEditIngTitle = this.handleEditIngTitle.bind(this);
+		this.handleEditIngQty = this.handleEditIngQty.bind(this);
+		this.handleEditIngUnit = this.handleEditIngUnit.bind(this);
+
+		this.handleClickSaveEdit = this.handleClickSaveEdit.bind(this);
+	}
+	//editing of ingredients
+	handleEditIngTitle (event){
+		this.setState({
+	 		editedTitle:event.target.value
+		});
+	}
+	handleEditIngQty (event){
+		this.setState({
+	 		editedQty:event.target.value
+		});
+	}
+	handleEditIngUnit (event){
+		this.setState({
+	 		editedUnit:event.target.value
+		});
 	}
 	deleteIngredient() {
 		this.props.delIng(this.props.parentId, this.props.id);
@@ -395,14 +449,13 @@ class Ingredient extends React.Component {
 			editing:!this.state.editing
 		});
 	}
-	/*
-	componentDidUpdate() {
-		if (this.state.editing){
-			this.refs.editIng.focus();
-			
-		}
+	handleClickSaveEdit() {
+		var updatedIngredient = {id:this.props.ing.id,title:this.state.editedTitle, qty:this.state.editedQty, unit:this.state.editedUnit}
+		console.log(this.props.ing);
+		console.log(updatedIngredient);
+		this.props.saveEdit(this.props.parentId, this.props.id, updatedIngredient);
+		this.handleClickEdit();
 	}
-	*/
 	render () {
 		return (
 			<span>
@@ -416,10 +469,10 @@ class Ingredient extends React.Component {
 				</tr>	
 			) : (
 				<tr>
-					<td style={{width:'50%'}}><input autoFocus onChange={this.props.handleIngTitle} type="text" className="form-control" placeholder={this.props.ing.title}></input></td>
-					<td style={{width:'10%'}}><input onChange={this.props.handleIngQty} type="text" className="form-control"  placeholder={this.props.ing.qty}></input></td>
-					<td style={{width:'10%'}}><input onChange={this.props.handleIngUnit} type="text" className="form-control"  placeholder={this.props.ing.unit}></input></td>
-					<td style={{width:'15%'}}><button onClick={this.handleClickEdit} className="btn">Save</button></td>
+					<td style={{width:'50%'}}><input autoFocus onChange={this.handleEditIngTitle} type="text" className="form-control" placeholder={this.props.ing.title}></input></td>
+					<td style={{width:'10%'}}><input onChange={this.handleEditIngQty} type="text" className="form-control"  placeholder={this.props.ing.qty}></input></td>
+					<td style={{width:'10%'}}><input onChange={this.handleEditIngUnit} type="text" className="form-control"  placeholder={this.props.ing.unit}></input></td>
+					<td style={{width:'15%'}}><button onClick={this.handleClickSaveEdit} className="btn">Save</button></td>
 					<td style={{width:'15%'}}><button className="btn btn-danger" onClick={this.deleteIngredient}>Remove</button></td>
 				</tr>
 			)}
