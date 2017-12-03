@@ -219,10 +219,9 @@ class RecipeApp extends React.Component {
 	render () {
 		return (
 			<div className="container">
-				<h1>Recipe List</h1>
-
-				<button type="button" className="btn btn-default" onClick={this.toggleAddRecipe}>Add Recipe</button>
-				<button className="ml-2 btn btn-danger" onClick={this.removeAll}>Delete All</button>
+				<h1 className="mt-4">Recipe List</h1>
+				<button type="button" className="mt-2 btn btn-default" onClick={this.toggleAddRecipe}><i className="fa fa-plus" aria-hidden="true"></i></button>
+				<button className="mt-2 ml-2 btn btn-danger" onClick={this.removeAll}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
 				{this.state.editing && (<div className="mt-4">
 					<AddRecipeForm onChange={this.handleAddRecipe} onSaveButton={this.addRecipe}/>
 				</div>)}
@@ -318,8 +317,8 @@ class RecipeCard extends React.Component {
 					<div className="card-header">
 						<h3>{this.props.title}</h3>
 						<div className="row">
-							<button className="ml-2 btn btn-default" onClick={this.handleClickEditRecipe} >Edit</button>
-							<button className="ml-2 btn btn-danger" onClick={this.removeRecipe}>Remove</button>
+							<button className="ml-2 btn" onClick={this.handleClickEditRecipe} ><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+							<button className="ml-2 btn btn-danger" onClick={this.removeRecipe}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
 						</div>
 					</div>
 				 	<div className="card-body">
@@ -332,15 +331,16 @@ class RecipeCard extends React.Component {
 								</div>
 							</form>
 
-							<button className="btn mb-4" onClick={this.saveEditedName}>Save</button>
+							<button className="btn btn-success mb-4" onClick={this.saveEditedName}><i className="fa fa-floppy-o" aria-hidden="true"></i></button>
 						</div>)}
-				 		<button className="btn" onClick={this.handleClickAddIng}>Add Ingredient</button>
-		 				<button className="ml-2 btn btn-danger" onClick={this.delAllIngredient}>Remove All</button>
+						<h4>Ingredients</h4>
+				 		<button className="btn" onClick={this.handleClickAddIng}><i className="fa fa-plus" aria-hidden="true"></i></button>
+		 				<button className="ml-2 btn btn-danger" onClick={this.delAllIngredient}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
 		 				{this.state.AddingIng && (<div className="mt-2">
 			 				<AddIngForm handleIngTitle={this.props.handleIngTitle} 
 					 								handleIngQty={this.props.handleIngQty}
 					 								handleIngUnit={this.props.handleIngUnit}/>
-							<button onClick={this.addIngredient} className="btn">Save</button>
+							<button onClick={this.addIngredient} className="btn btn-success"><i className="fa fa-floppy-o" aria-hidden="true"></i></button>
 						</div>)}
 			 			<table className='mt-4' style={{width:'100%'}}>
 			 				<thead>
@@ -376,7 +376,7 @@ class AddRecipeForm extends React.Component {
 			  <div className="form-row">
 			    <div className="form-group col">
 			      <input autoFocus onChange={this.props.onChange} type="text" className="form-control" id="recipeName" placeholder="Recipe Name"></input>
-			    	<button type="button" onClick={this.props.onSaveButton} className="btn mt-2">Save</button>
+			    	<button type="button" onClick={this.props.onSaveButton} className="btn btn-success mt-2"><i className="fa fa-floppy-o" aria-hidden="true"></i></button>
 			    </div>
 		    </div>
 			</form>
@@ -461,19 +461,19 @@ class Ingredient extends React.Component {
 			<span>
 			{!this.state.editing ? (
 				<tr>
-					<td style={{width:'50%'}}>{this.props.ing.title}</td>
-					<td style={{width:'10%'}}>{this.props.ing.qty}</td>
-					<td style={{width:'10%'}}>{this.props.ing.unit}</td>
-					<td style={{width:'15%'}}><button className="btn" onClick={this.handleClickEdit}>Edit</button></td>
-					<td style={{width:'15%'}}><button className="btn btn-danger" onClick={this.deleteIngredient}>Remove</button></td>
+					<td style={{width:'60%'}}>{this.props.ing.title}</td>
+					<td style={{width:'15%'}}>{this.props.ing.qty}</td>
+					<td style={{width:'15%'}}>{this.props.ing.unit}</td>
+					<td style={{width:'5%'}}><button className="btn" onClick={this.handleClickEdit}><i className="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+					<td style={{width:'5%'}}><button className="btn btn-danger" onClick={this.deleteIngredient}><i className="fa fa-trash-o" aria-hidden="true"></i></button></td>
 				</tr>	
 			) : (
 				<tr>
-					<td style={{width:'50%'}}><input autoFocus onChange={this.handleEditIngTitle} type="text" className="form-control" placeholder={this.props.ing.title}></input></td>
-					<td style={{width:'10%'}}><input onChange={this.handleEditIngQty} type="text" className="form-control"  placeholder={this.props.ing.qty}></input></td>
-					<td style={{width:'10%'}}><input onChange={this.handleEditIngUnit} type="text" className="form-control"  placeholder={this.props.ing.unit}></input></td>
-					<td style={{width:'15%'}}><button onClick={this.handleClickSaveEdit} className="btn">Save</button></td>
-					<td style={{width:'15%'}}><button className="btn btn-danger" onClick={this.deleteIngredient}>Remove</button></td>
+					<td style={{width:'60%'}}><input autoFocus onChange={this.handleEditIngTitle} type="text" className="form-control" placeholder={this.props.ing.title}></input></td>
+					<td style={{width:'15%'}}><input onChange={this.handleEditIngQty} type="text" className="form-control"  placeholder={this.props.ing.qty}></input></td>
+					<td style={{width:'15%'}}><input onChange={this.handleEditIngUnit} type="text" className="form-control"  placeholder={this.props.ing.unit}></input></td>
+					<td style={{width:'5%'}}><button onClick={this.handleClickSaveEdit} className="btn btn-success"><i className="fa fa-floppy-o" aria-hidden="true"></i></button></td>
+					<td style={{width:'5%'}}><button className="btn btn-danger" onClick={this.deleteIngredient}><i className="fa fa-trash-o" aria-hidden="true"></i></button></td>
 				</tr>
 			)}
 			</span>

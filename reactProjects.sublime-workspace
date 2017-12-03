@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"pr",
+				"props"
+			],
+			[
+				"edi",
+				"editedTitle"
+			],
+			[
+				"edit",
+				"editIng"
+			],
+			[
+				"save",
+				"saveEdit"
+			],
+			[
+				"in",
+				"Ingredient"
+			],
+			[
 				"toggle",
 				"editToggle"
 			],
@@ -44,16 +64,8 @@
 				"newRecipeName"
 			],
 			[
-				"save",
-				"saveEditedName"
-			],
-			[
 				"inde",
 				"index"
-			],
-			[
-				"in",
-				"indexToDel"
 			],
 			[
 				"rem",
@@ -502,10 +514,6 @@
 			[
 				"bt",
 				"btnClass"
-			],
-			[
-				"game",
-				"gameDiv"
 			]
 		]
 	},
@@ -520,13 +528,10 @@
 			}
 		},
 		{
-			"contents": "/*Tanzim Mokammel\nmtanzim@gmail.com\nNov 2017\n*/\n\nclass RecipeApp extends React.Component {\n\tconstructor(props) {\n\t\tsuper(props);\n\t\tthis.state = {\n\t\t\trecipes: [],\n\t\t\tnumRecipes:2,\n\t\t\tnewRecipeName: '',\n\t\t\tnewIng: {id:0, title:'', qty:0, unit:''},\n\t\t\tediting:false,\n\t\t\t//addRecipeStyleState: {display:'none'}\n\t\t};\n\n\t\tthis.eachRecipe = this.eachRecipe.bind(this);\n\t\tthis.addIngredient = this.addIngredient.bind(this);\n\t\tthis.delAllIngredient = this.delAllIngredient.bind(this);\n\t\tthis.delIngredient = this.delIngredient.bind(this);\n\t\tthis.addRecipe = this.addRecipe.bind(this);\n\t\tthis.remRecipe = this.remRecipe.bind(this);\n\t\tthis.removeAll = this.removeAll.bind(this);\n\t\tthis.handleAddRecipe = this.handleAddRecipe.bind(this);\n\t\tthis.handleAddIngTitle = this.handleAddIngTitle.bind(this);\n\t\tthis.handleAddIngQty = this.handleAddIngQty.bind(this);\n\t\tthis.handleAddIngUnit = this.handleAddIngUnit.bind(this);\n\t\tthis.editRecipName = this.editRecipName.bind(this);\n\t\tthis.toggleAddRecipe = this.toggleAddRecipe.bind(this);\n\t\t//this.renderAddRecipeForm = this.renderAddRecipeForm.bind(this);\n\n\n\t}\n\ttoggleAddRecipe() {\n\t\tthis.setState({\n\t\t\tediting:!this.state.editing\n\t\t});\n\t}\n\teditRecipName(id,newName) {\n\t\tconsole.log(newName+ ' for '+id);\n\t\tvar recipeUpdated = this.state.recipes.map(\n\t\t\trecipe => (recipe.id !== id) ?\n\t\t\t\trecipe :\n\t\t\t\t{...recipe,\n\t\t\t\t\ttitle:newName} \n\t\t);\n\t\tthis.setState({\n\t\t\trecipes:recipeUpdated\n\t\t});\n\n\t\t//console.log(this.state.recipes)\n\t}\n\n\taddRecipe() {\n\t\tvar updatedRecipe = this.state.recipes.concat([{id:(new Date).getTime(), title:this.state.newRecipeName, ing:[{}]}])\n\t\tthis.setState({\n\t\t\trecipes:updatedRecipe,\n\t\t\tnumRecipes: this.state.numRecipes+1,\n\t\t});\n\t\tthis.toggleAddRecipe();\n\t}\n\n\thandleAddIngTitle (event){\n\t\tthis.setState({\n\t \t\tnewIng:{...this.state.newIng,title:event.target.value}\n\t\t});\n\t}\n\thandleAddIngQty (event){\n\t\tthis.setState({\n\t \t\tnewIng:{...this.state.newIng,qty:event.target.value}\n\t\t});\n\t}\n\thandleAddIngUnit (event){\n\t\tthis.setState({\n\t \t\tnewIng:{...this.state.newIng,unit:event.target.value}\n\t\t});\n\t}\n\n\thandleAddRecipe (event) {\n\t\tthis.setState({\n\t \t\tnewRecipeName:event.target.value\n\t\t});\n\t}\n\n\tremRecipe(id) {\n\t\tvar indexToDel=-1;\n\t\tthis.state.recipes.forEach(function(recipe, index){\n\t\t\tif (recipe.id===id){\n\t\t\t\tindexToDel=index;\n\t\t\t}\n\t\t});\n\n\t\tconsole.log(`index to del is ${indexToDel}`);\n\n\t\tvar recipeUpdated = this.state.recipes;\n\t\tthis.state.recipes.splice(indexToDel,1);\n\t\t\n\t\tthis.setState({\n\t\t\trecipes:recipeUpdated\n\t\t});\n\n\t\tconsole.log(recipeUpdated);\n\t}\n\n\tremoveAll(){\n\t\tthis.setState({\n\t\t\trecipes:[],\n\t\t\tnumRecipes:0\n\t\t});\n\t} \n\n\taddIngredient(id) {\n\t\t//var newIng = [{id:(new Date).getTime(), name: this.state.newIng.title, qty: 2, unit: 'ml'}];\n\t\tvar newIng = {...this.state.newIng,id:(new Date).getTime()}\n\t\tconsole.log();\n\t\tvar recipeUpdated = this.state.recipes.map(function(recipe){\n\t\t\tif (recipe.id===id){\n\t\t\t\tvar addedIng=recipe.ing.concat(newIng);\n\t\t\t\treturn {...recipe,ing:addedIng};\n\t\t\t} else {\n\t\t\t\treturn recipe;\n\t\t\t}\n\t\t});\n\n\t\tthis.setState({\n\t\t\trecipes:recipeUpdated\n\t\t});\n\n\t\tconsole.log(recipeUpdated);\n\t}\n\n\tdelIngredient(id, ingId) {\n\t\tvar recIndexToDel=-1;\n\t\tvar ingIndexToDel=-1;\n\t\tthis.state.recipes.forEach(function(recipe, index){\n\t\t\tif (recipe.id===id){\n\t\t\t\trecIndexToDel=index;\n\t\t\t\trecipe.ing.forEach(function(ing,ingIndex){\n\t\t\t\t\tif (ing.id===ingId){\n\t\t\t\t\t\tingIndexToDel=ingIndex;\n\t\t\t\t\t}\n\t\t\t\t});\n\t\t\t}\n\t\t});\n\n\t\tvar recipeUpdated = this.state.recipes;\n\t\tthis.state.recipes[recIndexToDel].ing.splice(ingIndexToDel,1);\n\t\tthis.setState({\n\t\t\trecipes:recipeUpdated\n\t\t});\n\n\t}\n\n\tdelAllIngredient(id) {\n\t\tvar recipeUpdated = this.state.recipes.map(function(recipe){\n\t\t\tif (recipe.id===id){\n\t\t\t\tvar emptyArr=[];\n\t\t\t\treturn {...recipe,ing:emptyArr};\n\t\t\t} else {\n\t\t\t\treturn recipe;\n\t\t\t}\n\t\t});\n\n\t\tthis.setState({\n\t\t\trecipes:recipeUpdated\n\t\t});\n\n\t\tconsole.log(recipeUpdated);\n\n\n\t}\n\n\teachRecipe(recipe){\n\t\treturn (\n\t\t\t<RecipeCard\n\t\t\t\tkey={recipe.id}\n\t\t\t\tid={recipe.id}\n\t\t\t\ttitle={recipe.title}\n\t\t\t\tingredients={recipe.ing}\n\t\t\t\taddIng={this.addIngredient}\n\t\t\t\tremRecipe={this.remRecipe}\n\t\t\t\tdelAllIng={this.delAllIngredient}\n\t\t\t\tdelIng={this.delIngredient}\n\t\t\t\thandleIngTitle={this.handleAddIngTitle}\n\t\t\t\thandleIngQty={this.handleAddIngQty}\n\t\t\t\thandleIngUnit={this.handleAddIngUnit}\n\t\t\t\tsaveEdit = {this.editRecipName}\n\t\t\t></RecipeCard>\n\t\t);\n\t}\n\n\trender () {\n\t\treturn (\n\t\t\t<div className=\"container\">\n\t\t\t\t<h1>Recipe List</h1>\n\n\t\t\t\t<button type=\"button\" className=\"btn btn-default\" onClick={this.toggleAddRecipe}>Add Recipe</button>\n\t\t\t\t<button className=\"ml-2 btn btn-danger\" onClick={this.removeAll}>Delete All</button>\n\t\t\t\t{this.state.editing && (<div className=\"mt-4\">\n\t\t\t\t\t<AddRecipeForm onChange={this.handleAddRecipe} onSaveButton={this.addRecipe}/>\n\t\t\t\t</div>)}\n\t\t\t\t<div className=\"row\">\n\t\t\t\t\t{this.state.recipes.map(this.eachRecipe)}\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t)\n\t}\n}\n\n\n\nclass RecipeCard extends React.Component {\n\tconstructor(props) {\n\t\tsuper(props);\n\t\tthis.state = {\n\t\t\teditingName:false,\n\t\t\tAddingIng:false,\n\t\t\teditedRecipeName:'',\n\t\t\t//editRecipeStyleState: {display:'none'},\n\t\t\t//addIngStyleState: {display:'none'}\n\t\t};\n\n\t\tthis.eachIng = this.eachIng.bind(this);\n\t\tthis.addIngredient = this.addIngredient.bind(this);\n\t\tthis.removeRecipe = this.removeRecipe.bind(this);\n\t\tthis.delAllIngredient = this.delAllIngredient.bind(this);\n\t\tthis.saveEditedName = this.saveEditedName.bind(this);\n\t\tthis.handleEditRecipeName = this.handleEditRecipeName.bind(this);\n\t\tthis.handleClickEditRecipe = this.handleClickEditRecipe.bind(this);\n\t\tthis.handleClickAddIng = this.handleClickAddIng.bind(this);\n\t}\n\n\teachIng(ing){\n\t\tif (Object.keys(ing).length !== 0){\n\t\t\treturn (\n\t\t\t\t<Ingredient ing={ing}\n\t\t\t\t\t\t\t\t\t  key={ing.id}\n\t\t\t\t\t\t\t\t\t  id={ing.id}\n\t\t\t\t\t\t\t\t\t  parentId={this.props.id}\n\t\t\t\t\t\t\t\t\t  delIng={this.props.delIng}\n\t\t\t\t\t\t\t\t\t  handleIngTitle={this.props.handleIngTitle} \n\t\t \t\t\t\t\t\t\t\thandleIngQty={this.props.handleIngQty}\n\t\t \t\t\t\t\t\t\t\thandleIngUnit={this.props.handleIngUnit}/>\n\t\t\t);\n\t\t}\n\t\t\n\t}\n\n\tremoveRecipe(){\n\t\tthis.props.remRecipe(this.props.id);\n\t}\n\n\taddIngredient () {\n\t\tthis.props.addIng(this.props.id);\n\t\tthis.handleClickAddIng();\n\t}\n\tdelAllIngredient () {\n\t\tthis.props.delAllIng(this.props.id);\n\t}\n\n\tsaveEditedName() {\n\t\t\tthis.props.saveEdit(this.props.id, this.state.editedRecipeName);\n\t\t\tthis.handleClickEditRecipe();\n\t}\n\thandleEditRecipeName (event) {\n\t\tthis.setState({\n\t \t\teditedRecipeName:event.target.value\n\t\t});\n\t}\n\n\thandleClickEditRecipe() {\n\t\tthis.setState({\n\t\t\teditingName:!this.state.editingName\n\t\t});\n\t}\n\n\thandleClickAddIng() {\n\t\tthis.setState({\n\t\t\tAddingIng:!this.state.AddingIng\n\t\t});\n\t}\n\n\trender () {\n\t\t//console.log(Object.keys(this.props.ingredients[0]));\n\t\treturn (\n\t\t\t<div className='col-12 col-sm-6'>\n\t\t\t\t<div className=\"card\">\n\t\t\t\t\t<div className=\"card-header\">\n\t\t\t\t\t\t<h3>{this.props.title}</h3>\n\t\t\t\t\t\t<div className=\"row\">\n\t\t\t\t\t\t\t<button className=\"ml-2 btn btn-default\" onClick={this.handleClickEditRecipe} >Edit</button>\n\t\t\t\t\t\t\t<button className=\"ml-2 btn btn-danger\" onClick={this.removeRecipe}>Remove</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t \t<div className=\"card-body\">\n\t\t\t\t \t\t{this.state.editingName && (<div id=\"editToggle\">\n\t\t\t\t\t\t\t<form >\n\t\t\t\t  \t\t\t\t<div className=\"form-row\">\n\t\t\t\t    \t\t\t\t<div className=\"form-group col\">\n\t\t\t\t      \t\t\t\t<input autoFocus onChange={this.handleEditRecipeName} type=\"text\" className=\"form-control\" id=\"recipeEdit\" placeholder=\"New Recipe Name\"></input>\n\t\t\t\t    \t\t\t</div>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</form>\n\n\t\t\t\t\t\t\t<button className=\"btn mb-4\" onClick={this.saveEditedName}>Save</button>\n\t\t\t\t\t\t</div>)}\n\t\t\t\t \t\t<button className=\"btn\" onClick={this.handleClickAddIng}>Add Ingredient</button>\n\t\t \t\t\t\t<button className=\"ml-2 btn btn-danger\" onClick={this.delAllIngredient}>Remove All</button>\n\t\t \t\t\t\t{this.state.AddingIng && (<div className=\"mt-2\">\n\t\t\t \t\t\t\t<AddIngForm handleIngTitle={this.props.handleIngTitle} \n\t\t\t\t\t \t\t\t\t\t\t\t\thandleIngQty={this.props.handleIngQty}\n\t\t\t\t\t \t\t\t\t\t\t\t\thandleIngUnit={this.props.handleIngUnit}/>\n\t\t\t\t\t\t\t<button onClick={this.addIngredient} className=\"btn\">Save</button>\n\t\t\t\t\t\t</div>)}\n\t\t\t \t\t\t<table className='mt-4' style={{width:'100%'}}>\n\t\t\t \t\t\t\t<thead>\n\t\t\t \t\t\t\t{/*}\n\t\t\t\t \t\t\t\t<tr>\n\t\t\t\t \t\t\t\t\t<th>Name</th>\n\t\t\t\t \t\t\t\t\t<th>Qty</th>\n\t\t\t\t \t\t\t\t\t<th>Units</th>\n\t\t\t\t \t\t\t\t\t<th>Action</th>\n\t\t\t\t \t\t\t\t\t<th>Remove</th>\n\t\t\t \t\t\t\t\t</tr>\n\t\t \t\t\t\t\t*/}\t\n\t\t \t\t\t\t\t</thead>\n\t\t \t\t\t\t\t<tbody>\n\t\t\t\t \t\t\t\t{this.props.ingredients.map(this.eachIng)}\n\t\t\t \t\t\t\t</tbody>\n\t\t \t\t\t\t</table>\n\t\t\t\t \t</div>\n\t\t\t\t </div>\n\t\t\t </div>\n\t\t);\n\t}\n}\n\nclass AddRecipeForm extends React.Component {\n\tconstructor(props) {\n\t\tsuper(props);\n\t}\n\n\trender () {\n\t\treturn (\n\t\t\t<form>\n\t\t\t  <div className=\"form-row\">\n\t\t\t    <div className=\"form-group col\">\n\t\t\t      <input autoFocus onChange={this.props.onChange} type=\"text\" className=\"form-control\" id=\"recipeName\" placeholder=\"Recipe Name\"></input>\n\t\t\t    \t<button type=\"button\" onClick={this.props.onSaveButton} className=\"btn mt-2\">Save</button>\n\t\t\t    </div>\n\t\t    </div>\n\t\t\t</form>\n\t\t);\n\t}\n}\n\nclass AddIngForm extends React.Component {\n\tconstructor(props) {\n\t\tsuper(props);\n\t}\n\trender () {\n\t\treturn (\n\t\t\t<form>\n\t\t    <div className=\"form-row\">\n\t\t\t    <div className=\"form-group col-12\">\n\t\t\t      <input autoFocus onChange={this.props.handleIngTitle} type=\"text\" className=\"form-control\" id=\"ingName\" placeholder=\"Ingredient Name\"></input>\n\t\t\t    </div>\n\t\t\t    <div className=\"form-group col\">\n\t\t\t      <input onChange={this.props.handleIngQty} type=\"text\" className=\"form-control\" id=\"qty\" placeholder=\"Qty\"></input>\n\t\t\t    </div>\n\t\t\t    <div className=\"form-group col\">\n\t\t\t      <input onChange={this.props.handleIngUnit} type=\"text\"  className=\"form-control\" id=\"unit\" placeholder=\"Unit\"></input>\n\t\t\t    </div>\n\t\t\t  </div>\n\t\t\t</form>\n\t\t);\n\t}\n}\n\nclass Ingredient extends React.Component {\n\tconstructor(props) {\n\t\tsuper(props);\n\t\tthis.state = {\n\t\t\tediting:false\n\t\t};\n\t\tthis.deleteIngredient = this.deleteIngredient.bind(this);\n\t\tthis.handleClickEdit = this.handleClickEdit.bind(this);\n\t}\n\tdeleteIngredient() {\n\t\tthis.props.delIng(this.props.parentId, this.props.id);\n\t}\n\thandleClickEdit() {\n\t\tthis.setState({\n\t\t\tediting:!this.state.editing\n\t\t});\n\t}\n\trender () {\n\t\treturn (\n\t\t\t<span>\n\t\t\t{!this.state.editing ? (\n\t\t\t\t<tr>\n\t\t\t\t\t<td style={{width:'50%'}}>{this.props.ing.title}</td>\n\t\t\t\t\t<td style={{width:'10%'}}>{this.props.ing.qty}</td>\n\t\t\t\t\t<td style={{width:'10%'}}>{this.props.ing.unit}</td>\n\t\t\t\t\t<td style={{width:'15%'}}><button className=\"btn\" onClick={this.handleClickEdit}>Edit</button></td>\n\t\t\t\t\t<td style={{width:'15%'}}><button className=\"btn btn-danger\" onClick={this.deleteIngredient}>Remove</button></td>\n\t\t\t\t</tr>\t\n\t\t\t) : (\n\t\t\t\t<tr>\n\t\t\t\t\t<td style={{width:'50%'}}><input autoFocus onChange={this.props.handleIngTitle} type=\"text\" className=\"form-control\" placeholder={this.props.ing.title}></input></td>\n\t\t\t\t\t<td style={{width:'10%'}}><input onChange={this.props.handleIngQty} type=\"text\" className=\"form-control\"  placeholder={this.props.ing.qty}></input></td>\n\t\t\t\t\t<td style={{width:'10%'}}><input onChange={this.props.handleIngUnit} type=\"text\" className=\"form-control\"  placeholder={this.props.ing.unit}></input></td>\n\t\t\t\t\t<td style={{width:'15%'}}><button onClick={this.handleClickEdit} className=\"btn\">Save</button></td>\n\t\t\t\t\t<td style={{width:'15%'}}><button className=\"btn btn-danger\" onClick={this.deleteIngredient}>Remove</button></td>\n\t\t\t\t</tr>\n\t\t\t)}\n\t\t\t</span>\n\t\t\t\n\t\t);\n\t}\n}\n\n\nReactDOM.render(<RecipeApp/>, document.getElementById('react-container'));",
 			"file": "recipeStore/RecipeApp.js",
-			"file_size": 11940,
-			"file_write_time": 131566224065495710,
 			"settings":
 			{
-				"buffer_size": 11408,
+				"buffer_size": 13144,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -535,7 +540,7 @@
 			"file": "LyndaBulletin/App.js",
 			"settings":
 			{
-				"buffer_size": 8459,
+				"buffer_size": 8479,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -676,7 +681,7 @@
 	],
 	"find":
 	{
-		"height": 57.0
+		"height": 43.0
 	},
 	"find_in_files":
 	{
@@ -690,6 +695,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"edit",
+			"ingredient",
 			"ref",
 			"style",
 			"addIngStyleState",
@@ -720,7 +727,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -759,15 +766,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11408,
+						"buffer_size": 13144,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11317,
-								11317
+								11553,
+								11553
 							]
 						],
 						"settings":
@@ -777,10 +784,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 7722.0,
+						"translation.y": 8655.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -789,15 +796,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8459,
+						"buffer_size": 8479,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5568,
-								5568
+								7273,
+								7273
 							]
 						],
 						"settings":
@@ -807,10 +814,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5025.0,
+						"translation.y": 6543.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

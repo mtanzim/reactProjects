@@ -12,3 +12,7 @@ th {
   border-bottom: 1px solid black;
 }
 
+
+.card {
+	min-width:280px;
+}
