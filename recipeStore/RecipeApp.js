@@ -323,7 +323,7 @@ class RecipeCard extends React.Component {
 					</div>
 				 	<div className="card-body">
 				 		{this.state.editingName && (<div id="editToggle">
-							<form >
+							<form action='#'>
 				  				<div className="form-row">
 				    				<div className="form-group col">
 				      				<input autoFocus onChange={this.handleEditRecipeName} type="text" className="form-control" id="recipeEdit" placeholder="New Recipe Name"></input>
@@ -331,7 +331,7 @@ class RecipeCard extends React.Component {
 								</div>
 							</form>
 
-							<button className="btn btn-success mb-4" onClick={this.saveEditedName}><i className="fa fa-floppy-o" aria-hidden="true"></i></button>
+							<button type="button" className="btn btn-success mb-4" onClick={this.saveEditedName}><i className="fa fa-floppy-o" aria-hidden="true"></i></button>
 						</div>)}
 						<h4>Ingredients</h4>
 				 		<button className="btn" onClick={this.handleClickAddIng}><i className="fa fa-plus" aria-hidden="true"></i></button>
@@ -372,7 +372,7 @@ class AddRecipeForm extends React.Component {
 
 	render () {
 		return (
-			<form>
+			<form action='#'>
 			  <div className="form-row">
 			    <div className="form-group col">
 			      <input autoFocus onChange={this.props.onChange} type="text" className="form-control" id="recipeName" placeholder="Recipe Name"></input>
@@ -390,7 +390,7 @@ class AddIngForm extends React.Component {
 	}
 	render () {
 		return (
-			<form>
+			<form action='#'>
 		    <div className="form-row">
 			    <div className="form-group col-12">
 			      <input autoFocus onChange={this.props.handleIngTitle} type="text" className="form-control" id="ingName" placeholder="Ingredient Name"></input>
